@@ -28,7 +28,7 @@ Go to [app page](https://immense-ridge-33507.herokuapp.com/) and follow the prom
 
 ## Usage
 
-- Click on the `login` button on the homepage to sign up for a new profile, or login to your exisiting profile.
+- Click to `login` or `sign up` for a new profile.
 
 - When you're directed to the Profile page you'll be able to choose from several nail artists' information.
 
