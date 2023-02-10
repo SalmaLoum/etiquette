@@ -1,27 +1,41 @@
 const { gql } = require('apollo-server-express');
 
+// type User: artist, admin, 
+// User.userType: admin, artist, client
 const typeDefs = gql`
   type User {
     _id: ID
     username: String
     email: String
     password: String
-    thoughts: [Thought]!
+    isAdmin: Boolean
+    isArtist: Boolean
+    isClient: Boolean 
   }
 
-  type Thought {
+  type Salon {
     _id: ID
-    thoughtText: String
-    thoughtAuthor: String
+    salonName: String
+    salonAddress: String
     createdAt: String
-    comments: [Comment]!
+    artist: [Artist]!
+    storeHours: String
   }
-
-  type Comment {
+# salonId is array of salon ids artist works at
+  type Artist {
     _id: ID
-    commentText: String
+    availableDate: String
     commentAuthor: String
     createdAt: String
+    gallery: Image
+    salonId: [Salon]!
+  }
+# serviceType: mani, pedi, gel, etc. (one at a time)
+  type Services {
+    _id: ID
+    serviceType
+    duration
+    price
   }
 
   type Auth {
