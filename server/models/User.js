@@ -19,6 +19,10 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
+  userType: {
+    type: String,
+    required: true,
+  },
   salon: [
     {
       type: Schema.Types.ObjectId,
