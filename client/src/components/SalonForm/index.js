@@ -1,67 +1,67 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useMutation } from '@apollo/client'
 
-import { ADD_SALON } from '../../utils/mutations';
-import { QUERY_SALONS, QUERY_ME } from '../../utils/queries';
+import { ADD_SALON } from '../../utils/mutations'
+import { QUERY_SALONS, QUERY_ME } from '../../utils/queries'
 
-import Auth from '../../utils/auth';
+import Auth from '../../utils/auth'
 
 const ThoughtForm = () => {
-  const [salonAddress, setThoughtText] = useState('');
+  const [salonAddress, setThoughtText] = useState('')
 
-  const [characterCount, setCharacterCount] = useState(0);
+  const [characterCount, setCharacterCount] = useState(0)
 
   const [addSalon, { error }] = useMutation(ADD_SALON, {
     update(cache, { data: { addSalon } }) {
       try {
-        const { salons } = cache.readQuery({ query: QUERY_SALONS });
+        const { salons } = cache.readQuery({ query: QUERY_SALONS })
 
         cache.writeQuery({
           query: QUERY_SALONS,
           data: { salons: [addSalon, ...salons] },
-        });
+        })
       } catch (e) {
-        console.error(e);
+        console.error(e)
       }
 
       // update me object's cache
-      const { me } = cache.readQuery({ query: QUERY_ME });
+      const { me } = cache.readQuery({ query: QUERY_ME })
       cache.writeQuery({
         query: QUERY_ME,
         data: { me: { ...me, salons: [...me.salons, addSalon] } },
-      });
+      })
     },
-  });
+  })
 
   const handleFormSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault()
 
     try {
       const { data } = await addSalon({
         variables: {
           salonAddress,
-          salonName
+          salonName,
           // salonName: Auth.getProfile().data.username,
         },
-      });
+      })
       // setThoughtText('');
-      // from google maps api 
+      // from google maps api
       // GET salonName and salonAddress
-      setSalonAddress('');
+      setSalonAddress('')
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  };
+  }
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value } = event.target
 
     if (name === 'salon' && value.length <= 280) {
-      setThoughtText(value);
-      setCharacterCount(value.length);
+      setThoughtText(value)
+      setCharacterCount(value.length)
     }
-  };
+  }
 
   return (
     <div>
@@ -70,8 +70,9 @@ const ThoughtForm = () => {
       {Auth.loggedIn() ? (
         <>
           <p
-            className={`m-0 ${characterCount === 280 || error ? 'text-danger' : ''
-              }`}
+            className={`m-0 ${
+              characterCount === 280 || error ? 'text-danger' : ''
+            }`}
           >
             Character Count: {characterCount}/280
           </p>
@@ -109,7 +110,7 @@ const ThoughtForm = () => {
         </p>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ThoughtForm;
+export default ThoughtForm
