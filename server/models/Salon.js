@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
-const workRegManicure = require('../../assets/work.png')
+
 const salonSchema = new Schema({
   salonAddress: {
     type: String,
@@ -19,38 +19,54 @@ const salonSchema = new Schema({
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
-  artists: [
-    {
-      appointment: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Appointment'
-        //* has artist_id, date and time
-        // type: String,
-        // required: true,
-        // minlength: 1,
-        // maxlength: 280,
-      }],
-      artistName: {
-        type: String,
-        required: true,
-      },
-      createdAt: {
-        type: Date,
-        default: Date.now,
-        get: (timestamp) => dateFormat(timestamp),
-      },
-      // cloud upload work
-      gallery: [{
-        type: Schema.Types.ObjectId,
-        default: workRegManicure,
-        ref: 'Gallery'
-      }],
-      service: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Service'
-      }]
-    }
-  ],
+  salonHours: {
+    type: String,
+    required: true,
+  },
+  appointments: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Appointment'
+  }]
+  // artists: [{
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'Artist'
+  // }],
+  // clients: [{
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'Client'
+  // }],
+  // artists: [
+  //   {
+  //     appointment: [{
+  //       type: Schema.Types.ObjectId,
+  //       ref: 'Appointment'
+  //       //* has artist_id, date and time
+  //       // type: String,
+  //       // required: true,
+  //       // minlength: 1,
+  //       // maxlength: 280,
+  //     }],
+  //     artistName: {
+  //       type: String,
+  //       required: true,
+  //     },
+  //     createdAt: {
+  //       type: Date,
+  //       default: Date.now,
+  //       get: (timestamp) => dateFormat(timestamp),
+  //     },
+  //     // cloud upload work
+  //     gallery: [{
+  //       type: Schema.Types.ObjectId,
+  //       default: workRegManicure,
+  //       ref: 'Gallery'
+  //     }],
+  //     service: [{
+  //       type: Schema.Types.ObjectId,
+  //       ref: 'Service'
+  //     }]
+  //   }
+  // ],
 });
 
 const Salon = model('Salon', salonSchema);
