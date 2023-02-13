@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import ImageUpload from './components/Cloudinary/ImageUpload'
+import ImageUpload from './ImageUpload'
 import './Widget.css'
-import CldGallery from './components/Cloudinary/CldGallery'
+import CldGallery from './CldGallery'
 import { Cloudinary } from '@cloudinary/url-gen'
 
 function Widget() {

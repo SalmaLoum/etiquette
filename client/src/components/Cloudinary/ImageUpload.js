@@ -1,43 +1,45 @@
-import { openUploadWidget } from "../utils/CloudinaryService";
+// import { openUploadWidget } from '../../utils/CloudinaryService'
+
+import cloudinary from 'cloudinary'
 
 const ImageUpload = (props) => {
   const uploadImageWidget = () => {
-    console.log(props);
-    let myUploadWidget = openUploadWidget(
+    console.log(props)
+    let myUploadWidget = cloudinary.openUploadWidget(
       {
         cloudName: props.cloud_name,
         uploadPreset: props.upload_preset,
-        tags: ["myname"],
+        tags: ['myname'],
         maxImageWidth: 600,
         sources: [
-          "local",
-          "url",
-          "camera",
-          "instagram",
-          "image_search",
-          "google_drive",
-          "facebook",
-          "dropbox",
-          "shutterstock",
-          "getty",
-          "istock",
-          "unsplash"
-        ]
+          'local',
+          'url',
+          'camera',
+          'instagram',
+          'image_search',
+          'google_drive',
+          'facebook',
+          'dropbox',
+          'shutterstock',
+          'getty',
+          'istock',
+          'unsplash',
+        ],
       },
       function (error, result) {
-        if (!error && result.event === "success") {
-          props.onImageUpload(result.info.public_id);
+        if (!error && result.event === 'success') {
+          props.onImageUpload(result.info.public_id)
         }
-      }
-    );
-    myUploadWidget.open();
-  };
+      },
+    )
+    myUploadWidget.open()
+  }
 
   return (
     <button className="greenButton" onClick={uploadImageWidget}>
       Upload Image
     </button>
-  );
-};
+  )
+}
 
-export default ImageUpload;
+export default ImageUpload

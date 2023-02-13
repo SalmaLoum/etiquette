@@ -1,4 +1,4 @@
-import Photo from "../components/Cloudinary/CldPhoto";
+import Photo from './CldPhoto'
 
 const CldGallery = (props) => {
   return (
@@ -15,10 +15,10 @@ const CldGallery = (props) => {
               publicId={publicId}
               cloudName={props.cloud_name}
             />
-          );
+          )
         })}
     </div>
-  );
-};
+  )
+}
 
-export default CldGallery;
+export default CldGallery
