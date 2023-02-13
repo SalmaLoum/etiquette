@@ -1,4 +1,4 @@
-//for admins to add artist's name, salon name, salon address, salon hours, artist's availability
+//For artists to add their services, prices, and galleries.
 
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -42,11 +42,9 @@ const ThoughtForm = () => {
     try {
       const { data } = await addSalon({
         variables: {
-          salonAddress,
-          salonName,
-          salonHours,
-          artist,
-          availability,
+          services,
+          salonPrice,
+          gallery,
 
           // salonName: Auth.getProfile().data.username,
         },
