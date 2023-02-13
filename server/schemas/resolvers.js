@@ -70,7 +70,7 @@ const resolvers = {
     //   "email": "kayla.casale@gmail.com",
     //   "password": "Password123!"
     // }
-    // if userType= admin is true, user can add a salon
+    // if userType= admin is true, user can add a salon salon
     addSalon: async (parent, { salonName, salonAddress, salonHours }, context) => {
       console.log(context)
       if (context.user) {
