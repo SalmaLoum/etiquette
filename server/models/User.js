@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
+
 const userSchema = new Schema({
   username: {
     type: String,
@@ -21,15 +22,16 @@ const userSchema = new Schema({
   },
   userType: {
     type: String,
-    required: true,
+    required: false,
   },
-  salon: [
+  salons: [
     {
       type: Schema.Types.ObjectId,
       ref: 'Salon',
     },
   ],
 });
+
 
 userSchema.pre('save', async function (next) {
   if (this.isNew || this.isModified('password')) {
@@ -45,5 +47,5 @@ userSchema.methods.isCorrectPassword = async function (password) {
 };
 
 const User = model('User', userSchema);
-
+console.log(User)
 module.exports = User;

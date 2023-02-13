@@ -1,8 +1,9 @@
-//for admins to add artist's name, salon name, salon address, salon hours, artist's availability
 
+//for admins to add artist's name, salon name, salon address, salon hours, artist's availability
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useMutation } from '@apollo/client'
+
 
 import { ADD_SALON } from '../../utils/mutations'
 import { QUERY_SALONS, QUERY_ME } from '../../utils/queries'
@@ -10,8 +11,8 @@ import { QUERY_SALONS, QUERY_ME } from '../../utils/queries'
 import Auth from '../../utils/auth'
 
 const ThoughtForm = () => {
-  const [salonAddress, setThoughtText] = useState('')
-
+  const [salonName, setSalonName] = useState('')
+  const [salonAddress, setSalonAddress] = useState('')
   const [characterCount, setCharacterCount] = useState(0)
 
   const [addSalon, { error }] = useMutation(ADD_SALON, {
@@ -36,6 +37,32 @@ const ThoughtForm = () => {
     },
   })
 
+  // cloudinary
+  var openWidget = (e) => {
+    e.preventDefault()
+    myWidget.open()
+  }
+  var myWidget = window.cloudinary.createUploadWidget(
+    {
+      cloudName: 'do6kan0iu',
+      uploadPreset: 'etiquette',
+    },
+    (error, result) => {
+      if (!error && result && result.event === 'success') {
+        console.log('Done! Here is the image info: ', result.info)
+      }
+    },
+  )
+
+  // document.getElementById('upload_widget').addEventListener(
+  //   'click',
+  //   function () {
+  //     myWidget.open()
+  //   },
+  //   false,
+  // )
+
+
   const handleFormSubmit = async (event) => {
     event.preventDefault()
 
@@ -44,9 +71,12 @@ const ThoughtForm = () => {
         variables: {
           salonAddress,
           salonName,
-          salonHours,
+           salonHours,
           artist,
           availability,
+
+         
+
 
           // salonName: Auth.getProfile().data.username,
         },
@@ -64,7 +94,9 @@ const ThoughtForm = () => {
     const { name, value } = event.target
 
     if (name === 'salon' && value.length <= 280) {
-      setThoughtText(value)
+
+      setSalonName(value)
+
       setCharacterCount(value.length)
     }
   }
@@ -73,7 +105,8 @@ const ThoughtForm = () => {
     <div>
       <h3>Want to add an artist?</h3>
 
-      {Auth.loggedIn() ? (
+      {/* bring logged in back on when ready */}
+      {true ? (
         <>
           <p
             className={`m-0 ${
@@ -82,32 +115,40 @@ const ThoughtForm = () => {
           >
             Character Count: {characterCount}/280
           </p>
-          <form
-            className="flex-row justify-center justify-space-between-md align-center"
-            onSubmit={handleFormSubmit}
-          >
+          <form className="flex-row justify-center justify-space-between-md align-center">
             <div className="col-12 col-lg-9">
               <textarea
-                name="thoughtText"
+                name="Salon Name"
                 placeholder="Here's a new thought..."
-                value={thoughtText}
+                value={salonName}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
               ></textarea>
             </div>
+            <button
+              id="upload_widget"
+              class="cloudinary-button"
+              onClick={openWidget}
+            >
+              Upload files
+            </button>
 
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
                 Add comment for this artist
               </button>
             </div>
+
             {error && (
               <div className="col-12 my-3 bg-danger text-white p-3">
                 {error.message}
               </div>
             )}
           </form>
+          <button className="btn btn-primary btn-block py-3" type="submit">
+            Add Thought
+          </button>
         </>
       ) : (
         <p>
