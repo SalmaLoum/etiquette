@@ -38,8 +38,8 @@ const typeDefs = gql`
   type Service {
     _id: ID
     serviceType: String
+    price: String
     duration: String
-    price: Number
   }
 
   type Auth {
