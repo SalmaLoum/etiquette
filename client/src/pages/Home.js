@@ -1,14 +1,14 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
+import React from 'react'
+import { useQuery } from '@apollo/client'
 
-import ThoughtList from '../components/ThoughtList';
-import ThoughtForm from '../components/ThoughtForm';
+import ThoughtList from '../components/ThoughtList'
+import SalonForm from '../components/SalonForm'
 
-import { QUERY_THOUGHTS } from '../utils/queries';
+import { QUERY_SALONS } from '../utils/queries'
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_THOUGHTS);
-  const thoughts = data?.thoughts || [];
+  const { loading, data } = useQuery(QUERY_SALONS)
+  const thoughts = data?.thoughts || []
 
   return (
     <main>
@@ -17,7 +17,7 @@ const Home = () => {
           className="col-12 col-md-10 mb-3 p-3"
           style={{ border: '1px dotted #1a1a1a' }}
         >
-          <ThoughtForm />
+          <SalonForm />
         </div>
         <div className="col-12 col-md-8 mb-3">
           {loading ? (
@@ -31,7 +31,7 @@ const Home = () => {
         </div>
       </div>
     </main>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
