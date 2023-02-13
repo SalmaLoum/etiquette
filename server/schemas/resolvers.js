@@ -64,6 +64,45 @@ const resolvers = {
 
       return { token, user };
     },
+    // sample addUser request body
+    // {
+    //   "username": "kaylacasale",
+    //   "email": "kayla.casale@gmail.com",
+    //   "password": "Password123!"
+    // }
+    // if userType= admin is true, user can add a salon salon
+    addSalon: async (parent, { salonName, salonAddress, salonHours }, context) => {
+      console.log(context)
+      if (context.user) {
+        const salon = await Salon.create({
+          salonAddress,
+          salonName,
+          salonHours
+        });
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { salons: salon._id } }
+        );
+        return salon;
+      }
+      throw new AuthenticationError('You need to be logged in as an admin!')
+    },
+    addAppointment: async (parent, { appointmentId, datetime }, context) => {
+
+      return Salon.findOneAndUpdate(
+        { _id: appointmentId },
+        {
+          $addToSet: {
+            appointments: { datetime },
+          },
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      )
+
+    },
     //   addThought: async (parent, { thoughtText }, context) => {
     //     if (context.user) {
     //       const thought = await Thought.create({
