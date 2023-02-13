@@ -1,17 +1,14 @@
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const Footer = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
+  const location = useLocation()
+  const navigate = useNavigate()
   return (
     <footer className="w-100 mt-auto bg-secondary p-4">
       <div className="container text-center mb-5">
         {location.pathname !== '/' && (
-          <button
-            className="btn btn-dark mb-3"
-            onClick={() => navigate(-1)}
-          >
+          <button className="btn btn-dark mb-3" onClick={() => navigate(-1)}>
             &larr; Go Back
           </button>
         )}
@@ -25,11 +22,11 @@ const Footer = () => {
           >
             ❤️
           </span>{' '}
-          by the Tech Thoughts team.
+          © 2023 Kayla Casale, Bharat Rai and Salma Loum
         </h4>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer
