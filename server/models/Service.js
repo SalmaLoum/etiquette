@@ -1,16 +1,18 @@
 const { Schema, model } = require('mongoose');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 // can add service associated with appointment (mani, pedi, both); each is an object you add to service
 // serviceType = ['mani', 'pedi', 'gel', 'wax']
 // so artists can customize info about each service
 // artists connected to user through appointment through services, so even if artist changes, same service can still be provided 
-const serviceSchema = new Service({
+// let User = require(__dirname + "/User.js");
+const User = require('./User')
+const serviceSchema = new Schema({
     serviceType: {
         type: String,
         required: true,
     },
     price: {
-        type: Number,
+        type: String,
         required: true,
     },
     duration: {
@@ -41,5 +43,5 @@ const serviceSchema = new Service({
 
 
 const Service = model('Service', serviceSchema);
-
+// console.log(Schema.Types.User)
 module.exports = Service;
