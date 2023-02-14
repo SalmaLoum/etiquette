@@ -1,7 +1,7 @@
 import React from 'react'
 import { useQuery } from '@apollo/client'
 
-import ServiceList from '../components/ServiceList'
+import ServiceList from '../components/SingleSalon'
 
 import { QUERY_SALONS } from '../utils/queries'
 
