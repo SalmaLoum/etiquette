@@ -3,58 +3,53 @@ import { Link } from 'react-router-dom'
 import { useMutation } from '@apollo/client'
 import Auth from '../../utils/auth'
 
-import { ADD_SERVICE} from '../../utils/mutations'  
-import { QUERY_SALONS} from '../../utils/queries'
+import { ADD_SERVICE } from '../../utils/mutations'
+import { QUERY_SALONS } from '../../utils/queries'
 
-utils/queries
-
-const ServiceList ({ 
-
+const ServiceList = ({
   username,
   salonName,
   salonHours,
   salonAddress,
-  appointments
-}) => { 
-  
+  serviceType,
+}) => {
   if (!appointments.length) {
     return <h3>No Appointments Yet</h3>
   }
 
   return (
-    <header className="bg-primary text-light mb-4 py-3 flex-row align-center">
-      <div className="container flex-row justify-space-between-lg justify-center align-center">
-        <div>
-          <Link className="text-light" to="/">
-            <h1 className="m-0">Etiquette</h1>
-          </Link>
-
-          <p className="m-0">Book your nail salon appointments today!</p>
-        </div>
-        <div>
-           {/* bring logged in back on when ready  ` {Auth.loggedIn() ? ( /{true?(   ` */}
-      {true? (
-            <>
-              <Link className="btn btn-lg btn-info m-2" to="/me">
-                {Auth.getProfile().data.user}'s profile
-              </Link>
-              <button className="btn btn-lg btn-light m-2" onClick={logout}>
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <Link className="btn btn-lg btn-info m-2" to="/login">
-                Login
-              </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/signup">
-                Signup
-              </Link>
-            </>
-          )}
-        </div>
-      </div>
-    </header>
+    <div>
+      {showSalonName && <h3>{salonName}</h3>}
+      {salons &&
+        salons.map((salon) => (
+          <div key={salon._id} className="card mb-3">
+            <h4 className="card-header bg-primary text-light p-2 m-0">
+              {showUsername ? (
+                <Link
+                  className="text-light"
+                  to={`/profiles/${salon.salonHours}`}
+                >
+                  {service.serviceType} <br />
+                  <span style={{ fontSize: '1rem' }}>
+                    This service duriation is {service.duration}
+                  </span>
+                </Link>
+              ) : (
+                <>
+                  <span style={{ fontSize: '1rem' }}>For ${service.price}</span>
+                </>
+              )}
+            </h4>
+            <div className="card-body bg-light p-2">
+              <p>{user.username}</p>
+            </div>
+            <Link
+              className="btn btn-primary btn-block btn-squared"
+              to={`/salon/${salon._id}`}
+            ></Link>
+          </div>
+        ))}
+    </div>
   )
 }
 
