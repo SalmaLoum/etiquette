@@ -16,10 +16,12 @@ export const QUERY_USER = gql`
 `
 
 export const QUERY_SALONS = gql`
-query Query($salonName: String) {
-  appointments(salonName: $salonName) {
+query Query {
+  salons {
     _id
+    salonAddress
     salonName
+    salonHours
   }
 }
 `
