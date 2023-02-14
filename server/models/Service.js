@@ -5,6 +5,7 @@ const { Schema, model } = require('mongoose');
 // so artists can customize info about each service
 // artists connected to user through appointment through services, so even if artist changes, same service can still be provided 
 // let User = require(__dirname + "/User.js");
+
 const User = require('./User')
 const serviceSchema = new Schema({
     serviceType: {

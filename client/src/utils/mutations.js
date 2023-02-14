@@ -54,3 +54,19 @@ export const ADD_COMMENT = gql`
     }
   }
 `
+
+export const ADD_APPOINTMENTS = gql`
+  mutation addAppointments($thoughtId: ID!, $commentText: String!) {
+    addComment(thoughtId: $thoughtId, commentText: $commentText) {
+      _id
+      thoughtText
+      thoughtAuthor
+      createdAt
+      comments {
+        _id
+        commentText
+        createdAt
+      }
+    }
+  }
+`

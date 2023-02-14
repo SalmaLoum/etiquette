@@ -1,11 +1,11 @@
-const { Schema, model } = require('mongoose');
-const dateFormat = require('../utils/dateFormat');
+const { Schema, model } = require('mongoose')
+const dateFormat = require('../utils/dateFormat')
 // const Appointment = require('../Appointment.js')
 
 const salonSchema = new Schema({
   salonAddress: {
     type: String,
-    required: 'You need to leave a thought!',
+    required: 'You need to leave a salon address!',
     minlength: 1,
     maxlength: 280,
     trim: true,
@@ -24,10 +24,12 @@ const salonSchema = new Schema({
     type: String,
     required: true,
   },
-  appointments: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Appointment'
-  }]
+  appointments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Appointment',
+    },
+  ],
   // artists: [{
   //   type: Schema.Types.ObjectId,
   //   ref: 'Artist'
@@ -68,8 +70,8 @@ const salonSchema = new Schema({
   //     }]
   //   }
   // ],
-});
+})
 
-const Salon = model('Salon', salonSchema);
+const Salon = model('Salon', salonSchema)
 
-module.exports = Salon;
+module.exports = Salon

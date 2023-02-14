@@ -26,18 +26,21 @@ export const QUERY_SALONS = gql`
   }
 `
 
-export const QUERY_SINGLE_THOUGHT = gql`
-  query getSingleThought($thoughtId: ID!) {
-    thought(thoughtId: $thoughtId) {
+export const QUERY_SINGLE_SALON = gql`
+  query getSingleSalon($salonId: ID!) {
+    service(salonId: $salonId) {
       _id
-      thoughtText
-      thoughtAuthor
+      salonName
+      salonAddress
       createdAt
-      comments {
+      appointments
+      services {
         _id
-        commentText
-        commentAuthor
+        serviceType
+        price
+        duration
         createdAt
+        user
       }
     }
   }
