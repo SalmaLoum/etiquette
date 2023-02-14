@@ -1,14 +1,18 @@
+
 import React from 'react'
 import { Link } from 'react-router-dom'
 
 const MainList = ({
+
   thoughts,
   title,
   showTitle = true,
   showUsername = true,
 }) => {
   if (!thoughts.length) {
+
     return <h5>No requests Yet</h5>
+
   }
 
   return (
@@ -25,13 +29,17 @@ const MainList = ({
                 >
                   {thought.thoughtAuthor} <br />
                   <span style={{ fontSize: '1rem' }}>
+
                     had this nail appointment on {thought.createdAt}
+
                   </span>
                 </Link>
               ) : (
                 <>
                   <span style={{ fontSize: '1rem' }}>
+
                     You had this appointment on {thought.createdAt}
+
                   </span>
                 </>
               )}
@@ -48,7 +56,12 @@ const MainList = ({
           </div>
         ))}
     </div>
+
   )
 }
 
 export default MainList
+
+  );
+};
+
