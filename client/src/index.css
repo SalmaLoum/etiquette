@@ -1000,6 +1000,7 @@ a:hover {
 
 .btn:hover {
   background-color: #cecece;
+  text-decoration: none;
 }
 
 .btn.btn-squared {
