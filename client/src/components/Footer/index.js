@@ -22,6 +22,7 @@ const Footer = () => {
           >
             ❤️
           </span>{' '}
+          
           © 2023 Kayla Casale, Bharat Rai and Salma Loum
         </h4>
       </div>

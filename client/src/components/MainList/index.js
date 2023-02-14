@@ -1,14 +1,18 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 
-const ThoughtList = ({
+import React from 'react'
+import { Link } from 'react-router-dom'
+
+const MainList = ({
+
   thoughts,
   title,
   showTitle = true,
   showUsername = true,
 }) => {
   if (!thoughts.length) {
-    return <h3>No Thoughts Yet</h3>;
+
+    return <h5>No requests Yet</h5>
+
   }
 
   return (
@@ -25,13 +29,17 @@ const ThoughtList = ({
                 >
                   {thought.thoughtAuthor} <br />
                   <span style={{ fontSize: '1rem' }}>
-                    had this thought on {thought.createdAt}
+
+                    had this nail appointment on {thought.createdAt}
+
                   </span>
                 </Link>
               ) : (
                 <>
                   <span style={{ fontSize: '1rem' }}>
-                    You had this thought on {thought.createdAt}
+
+                    You had this appointment on {thought.createdAt}
+
                   </span>
                 </>
               )}
@@ -48,7 +56,12 @@ const ThoughtList = ({
           </div>
         ))}
     </div>
+
+  )
+}
+
+export default MainList
+
   );
 };
 
-export default ThoughtList;
