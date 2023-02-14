@@ -4,6 +4,8 @@ import { useQuery } from '@apollo/client'
 
 import SalonForm from '../components/SalonForm'
 import MainList from '../components/MainList'
+import SalonForm from '../components/SalonForm'
+import ThoughtList from '../components/ThoughtList'
 
 import { QUERY_USER, QUERY_ME } from '../utils/queries'
 

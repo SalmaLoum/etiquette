@@ -41,34 +41,74 @@ const resolvers = {
   },
 
   Mutation: {
+
     addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password })
-      const token = signToken(user)
-      return { token, user }
+      const user = await User.create({ username, email, password });
+      const token = signToken(user);
+      return { token, user };
     },
     login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email })
+      const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError('No user found with this email address')
+        throw new AuthenticationError('No user found with this email address');
       }
 
-      const correctPw = await user.isCorrectPassword(password)
+      const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError('Incorrect credentials')
+        throw new AuthenticationError('Incorrect credentials');
       }
 
-      const token = signToken(user)
+      const token = signToken(user);
 
-      return { token, user }
+      return { token, user };
     },
-    addThought: async (parent, { thoughtText }, context) => {
+    // sample addUser request body
+    // {
+    //   "username": "kaylacasale",
+    //   "email": "kayla.casale@gmail.com",
+    //   "password": "Password123!"
+    // }
+    // if userType= admin is true, user can add a salon salon
+    addSalon: async (parent, { salonName, salonAddress, salonHours }, context) => {
+      console.log(context)
       if (context.user) {
-        const thought = await Thought.create({
-          thoughtText,
-          thoughtAuthor: context.user.username,
-        })
+        const salon = await Salon.create({
+          salonAddress,
+          salonName,
+          salonHours
+        });
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { salons: salon._id } }
+        );
+        return salon;
+      }
+      throw new AuthenticationError('You need to be logged in as an admin!')
+    },
+    addAppointment: async (parent, { appointmentId, datetime }, context) => {
+
+      return Salon.findOneAndUpdate(
+        { _id: appointmentId },
+        {
+          $addToSet: {
+            appointments: { datetime },
+          },
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      )
+
+    },
+    //   addThought: async (parent, { thoughtText }, context) => {
+    //     if (context.user) {
+    //       const thought = await Thought.create({
+    //         thoughtText,
+    //         thoughtAuthor: context.user.username,
+    //       });
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
