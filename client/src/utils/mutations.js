@@ -25,18 +25,12 @@ export const ADD_USER = gql`
 `
 
 export const ADD_SALON = gql`
-  mutation addThought($thoughtText: String!) {
-    addThought(thoughtText: $thoughtText) {
-      _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-      comments {
-        _id
-        commentText
-      }
-    }
+mutation AddSalon($salonName: String, $salonAddress: String, $salonHours: String) {
+  addSalon(salonName: $salonName, salonAddress: $salonAddress, salonHours: $salonHours) {
+    _id
+    salonName
   }
+}
 `
 
 export const ADD_COMMENT = gql`
