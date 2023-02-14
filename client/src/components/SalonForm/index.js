@@ -1,4 +1,3 @@
-
 //for admins to add artist's name, salon name, salon address, salon hours, artist's availability
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -63,19 +62,16 @@ const SalonForm = () => {
   //   false,
   // )
 
-
   const handleFormSubmit = async (event) => {
     event.preventDefault()
 
     try {
       const { data } = await addSalon({
         variables: {
+          user: Auth.getProfile().data.username,
           salonAddress,
           salonName,
           salonHours,
-
-
-          // salonName: Auth.getProfile().data.username,
         },
       })
       // setThoughtText('');
@@ -91,8 +87,8 @@ const SalonForm = () => {
     const { name, value } = event.target
 
     if (name === 'salon' && value.length <= 280) {
-
       setSalonName(value)
+      setSalonHours(value)
 
       setCharacterCount(value.length)
     }
@@ -100,10 +96,8 @@ const SalonForm = () => {
 
   return (
     <div>
-
       <h3>Booking a nail salon appointment?</h3>
       <h3>Viewing an nail artist's page?</h3>
-
 
       {/* bring logged in back on when ready  ` {Auth.loggedIn() ? ( /{true?(   ` */}
       {Auth.loggedIn() ? (
@@ -136,9 +130,7 @@ const SalonForm = () => {
 
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
-
                 Add comment for this artist
-
               </button>
             </div>
 
@@ -151,10 +143,8 @@ const SalonForm = () => {
         </>
       ) : (
         <p>
-
           You need to be logged in to make an appointment. Please{' '}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
-
         </p>
       )}
     </div>

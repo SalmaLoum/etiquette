@@ -9,9 +9,11 @@ import { QUERY_SALONS, QUERY_ME } from '../../utils/queries'
 
 import Auth from '../../utils/auth'
 
-const ThoughtForm = () => {
-  const [salonAddress, setThoughtText] = useState('')
-
+const ServiceForm = () => {
+  const [serviceType, setServiceType] = useState('')
+  const [price, setPrice] = useState('')
+  const [duration, setDuration] = useState('')
+  // const [gallery, setGallery] = useState('')
   const [characterCount, setCharacterCount] = useState(0)
 
   const [addSalon, { error }] = useMutation(ADD_SALON, {
@@ -42,17 +44,17 @@ const ThoughtForm = () => {
     try {
       const { data } = await addSalon({
         variables: {
-          services,
-          salonPrice,
-          gallery,
-
+          serviceType,
+          price,
+          duration,
+          // gallery,
           // salonName: Auth.getProfile().data.username,
         },
       })
       // setThoughtText('');
       // from google maps api
       // GET salonName and salonAddress
-      setSalonAddress('')
+      setPrice('')
     } catch (err) {
       console.error(err)
     }
@@ -61,8 +63,8 @@ const ThoughtForm = () => {
   const handleChange = (event) => {
     const { name, value } = event.target
 
-    if (name === 'salon' && value.length <= 280) {
-      setThoughtText(value)
+    if (name === 'manicure' && value.length <= 280) {
+      setServiceType(value)
       setCharacterCount(value.length)
     }
   }
@@ -86,9 +88,9 @@ const ThoughtForm = () => {
           >
             <div className="col-12 col-lg-9">
               <textarea
-                name="thoughtText"
-                placeholder="Here's a new thought..."
-                value={thoughtText}
+                name="serviceType"
+                placeholder="Type a new salon name..."
+                value={serviceType}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
@@ -117,4 +119,4 @@ const ThoughtForm = () => {
   )
 }
 
-export default ThoughtForm
+export default ServiceForm
