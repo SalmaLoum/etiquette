@@ -12,10 +12,13 @@ const resolvers = {
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate('salons');
     },
-    salons: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return Salon.find(params).sort({ createdAt: -1 });
+    salons: async () => {
+      return Salon.find().sort({ createdAt: -1 });
     },
+    // salons: async (parent, { username }) => {
+    //   const params = username ? { username } : {};
+    //   return Salon.find(params).sort({ createdAt: -1 });
+    // },
     salon: async (parent, { salonId }) => {
       return Salon.findOne({ _id: salonId }).populate('appointments');
     },

@@ -10,8 +10,8 @@ import { QUERY_SALONS } from '../utils/queries'
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_SALONS)
-
-  const salons = data?.SalonList || []
+  console.log(data)
+  const salons = data?.salons || []
 
   return (
     <main>
@@ -20,7 +20,16 @@ const Home = () => {
           className="col-12 col-md-10 mb-3 p-3"
           style={{ border: '1px dotted #1a1a1a' }}
         >
-          <SalonList />
+          <div className="col-12 col-md-8 mb-3">
+            {loading ? (
+              <div>Loading...</div>
+            ) : (
+
+              <SalonList
+                salons={salons}
+                title="Available Salons" />
+            )}
+          </div>
         </div>
 
         <div className="flex-row justify-center">

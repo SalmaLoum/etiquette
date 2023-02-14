@@ -1,6 +1,10 @@
 import React from 'react'
+// import { Link } from 'react-router-dom';
 
-const SalonList = ({ salons = [] }) => {
+
+
+const SalonList = ({ salons }) => {
+  console.log(salons)
   if (!salons.length) {
     return <h3>No Salons selected Yet</h3>
   }
@@ -19,13 +23,16 @@ const SalonList = ({ salons = [] }) => {
             <div key={salon._id} className="col-12 mb-3 pb-3">
               <div className="p-3 bg-dark text-light">
                 <h5 className="card-header">
-                  {salon.salonName} commented{' '}
+                  {salon.salonName}
                   <span style={{ fontSize: '0.825rem' }}>
                     on {salon.createdAt}
                   </span>
                 </h5>
                 <p className="card-body">{salon.salonHours}</p>
               </div>
+              {/* <Link
+                className="btn btn-primary btn-block btn-squared"
+                to={`/th`} */}
             </div>
           ))}
       </div>
@@ -33,4 +40,4 @@ const SalonList = ({ salons = [] }) => {
   )
 }
 
-export default SalonList
+export default SalonList;

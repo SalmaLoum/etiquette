@@ -50,7 +50,7 @@ const typeDefs = gql`
   type Query {
     users: [User]
     user(username: String!): User
-    salons(username: String): [Salon]
+    salons: [Salon]
     salon(salonId: ID!): Salon
     appointments(salonName: String): [Salon]
     appointment(appointmentId: ID!): Appointment
