@@ -99,7 +99,7 @@ const SalonForm = () => {
       <h3>Booking a nail salon appointment?</h3>
       <h3>Viewing an nail artist's page?</h3>
 
-      {/* bring logged in back on when ready  `      {true ? (` */}
+      {/* bring logged in back on when ready  ` {Auth.loggedIn() ? ( /{true?(   ` */}
       {Auth.loggedIn() ? (
         <>
           <p
@@ -113,7 +113,7 @@ const SalonForm = () => {
             <div className="col-12 col-lg-9">
               <textarea
                 name="Salon Name"
-                placeholder="Here's a new thought..."
+                placeholder="Add any specifics or requests for your visit..."
                 value={salonName}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
@@ -130,7 +130,7 @@ const SalonForm = () => {
 
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
-                Add comment for this artist
+                Send request.
               </button>
             </div>
 
@@ -140,9 +140,6 @@ const SalonForm = () => {
               </div>
             )}
           </form>
-          <button className="btn btn-primary btn-block py-3" type="submit">
-            Add Thought
-          </button>
         </>
       ) : (
         <p>

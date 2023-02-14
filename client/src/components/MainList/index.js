@@ -8,7 +8,7 @@ const MainList = ({
   showUsername = true,
 }) => {
   if (!thoughts.length) {
-    return <h3>No Thoughts Yet</h3>
+    return <h5>No requests Yet</h5>
   }
 
   return (
@@ -25,13 +25,13 @@ const MainList = ({
                 >
                   {thought.thoughtAuthor} <br />
                   <span style={{ fontSize: '1rem' }}>
-                    had this thought on {thought.createdAt}
+                    had this nail appointment on {thought.createdAt}
                   </span>
                 </Link>
               ) : (
                 <>
                   <span style={{ fontSize: '1rem' }}>
-                    You had this thought on {thought.createdAt}
+                    You had this appointment on {thought.createdAt}
                   </span>
                 </>
               )}
