@@ -17,11 +17,11 @@ const resolvers = {
       return Salon.find(params).sort({ createdAt: -1 });
     },
     salon: async (parent, { salonId }) => {
-      return Salon.findOne({ _id: salonId });
+      return Salon.findOne({ _id: salonId }).populate('appointments');
     },
     appointments: async (parent, { salonName }) => {
       const params = salonName ? { salonName } : {};
-      return Appointment.find(params).sort({ createdAt: -1 })
+      return Salon.find(params).populate("appointments")
     },
     appointment: async (parent, { appointmentId }) => {
       return Appointment.findOne({ _id: appointmentId })
