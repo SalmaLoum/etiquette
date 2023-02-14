@@ -42,17 +42,16 @@ const ThoughtForm = () => {
     try {
       const { data } = await addSalon({
         variables: {
-          services,
-          salonPrice,
-          gallery,
-
+          // services,
+          // salonPrice,
+          // gallery,
           // salonName: Auth.getProfile().data.username,
         },
       })
       // setThoughtText('');
       // from google maps api
       // GET salonName and salonAddress
-      setSalonAddress('')
+      // setSalonAddress('')
     } catch (err) {
       console.error(err)
     }
@@ -88,7 +87,7 @@ const ThoughtForm = () => {
               <textarea
                 name="thoughtText"
                 placeholder="Here's a new thought..."
-                value={thoughtText}
+                value={salonAddress}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}

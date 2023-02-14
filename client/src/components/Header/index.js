@@ -18,7 +18,8 @@ const Header = () => {
           <p className="m-0">Book your nail salon appointment today.</p>
         </div>
         <div>
-          {Auth.loggedIn() ? (
+          {/* update true to Auth.loggedIn() when ready */}
+          {true ? (
             <>
               <Link className="btn btn-lg btn-info m-2" to="/me">
                 {Auth.getProfile().data.username}'s profile

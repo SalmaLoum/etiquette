@@ -5,10 +5,10 @@ import MainList from '../components/MainList'
 import SalonForm from '../components/SalonForm'
 import ServiceForm from '../components/ServiceForm'
 
-import { QUERY_THOUGHTS } from '../utils/queries'
+import { QUERY_SALONS } from '../utils/queries'
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_THOUGHTS)
+  const { loading, data } = useQuery(QUERY_SALONS)
   const thoughts = data?.thoughts || []
 
   return (

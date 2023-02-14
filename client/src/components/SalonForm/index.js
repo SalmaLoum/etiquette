@@ -9,9 +9,9 @@ import { QUERY_SALONS, QUERY_ME } from '../../utils/queries'
 
 import Auth from '../../utils/auth'
 
-const ThoughtForm = () => {
-  const [salonAddress, setThoughtText] = useState('')
-
+const SalonForm = () => {
+  const [salonAddress, setSalonAddress] = useState('')
+  const [salonName, setSalonName] = useState('')
   const [characterCount, setCharacterCount] = useState(0)
 
   const [addSalon, { error }] = useMutation(ADD_SALON, {
@@ -36,6 +36,31 @@ const ThoughtForm = () => {
     },
   })
 
+  // cloudinary
+  var openWidget = (e) => {
+    e.preventDefault()
+    myWidget.open()
+  }
+  var myWidget = window.cloudinary.createUploadWidget(
+    {
+      cloudName: 'do6kan0iu',
+      uploadPreset: 'etiquette',
+    },
+    (error, result) => {
+      if (!error && result && result.event === 'success') {
+        console.log('Done! Here is the image info: ', result.info)
+      }
+    },
+  )
+
+  // document.getElementById('upload_widget').addEventListener(
+  //   'click',
+  //   function () {
+  //     myWidget.open()
+  //   },
+  //   false,
+  // )
+
   const handleFormSubmit = async (event) => {
     event.preventDefault()
 
@@ -44,9 +69,9 @@ const ThoughtForm = () => {
         variables: {
           salonAddress,
           salonName,
-          salonHours,
-          artist,
-          availability,
+          //  salonHours,
+          // artist,
+          // availability,
 
           // salonName: Auth.getProfile().data.username,
         },
@@ -64,7 +89,8 @@ const ThoughtForm = () => {
     const { name, value } = event.target
 
     if (name === 'salon' && value.length <= 280) {
-      setThoughtText(value)
+      setSalonName(value)
+
       setCharacterCount(value.length)
     }
   }
@@ -88,9 +114,9 @@ const ThoughtForm = () => {
           >
             <div className="col-12 col-lg-9">
               <textarea
-                name="thoughtText"
-                placeholder="Here's a new thought..."
-                value={thoughtText}
+                name="salonName"
+                placeholder="Salon name here..."
+                value={salonName}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
@@ -119,4 +145,4 @@ const ThoughtForm = () => {
   )
 }
 
-export default ThoughtForm
+export default SalonForm
