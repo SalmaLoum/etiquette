@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SalonList = ({ salons = [] }) => {
+const SalonList = ({ salons }) => {
   if (!salons.length) {
     return <h3>No Salons Yet</h3>;
   }
