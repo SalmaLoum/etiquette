@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useMutation } from '@apollo/client'
 
-import { ADD_SALON } from '../../utils/mutations';
-import { QUERY_SALONS } from '../../utils/queries';
+import { ADD_SALON } from '../../utils/mutations'
+import { QUERY_SALONS } from '../../utils/queries'
 
-import Auth from '../../utils/auth';
+import Auth from '../../utils/auth'
+
 
     const SalonForm = ({salonId}) => {
         const [salonName, setSalonName] = useState('')
@@ -16,8 +17,10 @@ import Auth from '../../utils/auth';
 
         const [addSalon, { error: addSalonError }] = useMutation(ADD_SALON)
 
-        const handleFormSubmit = async (event) => {
-            event.preventDefault()
+
+    const handleFormSubmit = async (event) => {
+      event.preventDefault()
+
 
         const handleChange = (event) => {
             const { name, value } = event.target;

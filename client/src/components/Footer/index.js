@@ -12,7 +12,7 @@ const Footer = () => {
             &larr; Go Back
           </button>
         )}
-        <h4>
+        <p>
           Made with{' '}
           <span
             className="emoji"
@@ -22,9 +22,8 @@ const Footer = () => {
           >
             ❤️
           </span>{' '}
-          
           © 2023 Kayla Casale, Bharat Rai and Salma Loum
-        </h4>
+        </p>
       </div>
     </footer>
   )

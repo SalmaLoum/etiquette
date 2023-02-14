@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-const SalonList = ({ salons = [] }) => {
+const SalonList = ({ salons }) => {
   if (!salons.length) {
-    return <h3>No Salons Yet</h3>;
+    return <h3>No Salons selected Yet</h3>
   }
 
   return (
@@ -30,7 +30,7 @@ const SalonList = ({ salons = [] }) => {
           ))}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default SalonList;
+export default SalonList
