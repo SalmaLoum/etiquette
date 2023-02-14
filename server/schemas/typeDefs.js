@@ -52,7 +52,7 @@ const typeDefs = gql`
     user(username: String!): User
     salons(username: String): [Salon]
     salon(salonId: ID!): Salon
-    appointments(salonName: String): [Appointment]
+    appointments(salonName: String): [Salon]
     appointment(appointmentId: ID!): Appointment
     services(datetime: String): [Service]
     service(serviceId: ID!): Service
@@ -67,7 +67,7 @@ const typeDefs = gql`
     addService(serviceId: ID!): Service
   }
 `;
-
+// less repeating data bw models, more linear path, less hooks and neccesary arguments to pass in request body
 module.exports = typeDefs;
 
 // addThought(thoughtText: String!): Thought
