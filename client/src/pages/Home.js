@@ -1,7 +1,7 @@
 import React from 'react'
 import { useQuery } from '@apollo/client'
 
-import ThoughtList from '../components/ThoughtList'
+import MainList from '../components/MainList'
 import SalonForm from '../components/SalonForm'
 
 import { QUERY_SALONS } from '../utils/queries'
@@ -23,10 +23,7 @@ const Home = () => {
           {loading ? (
             <div>Loading...</div>
           ) : (
-            <ThoughtList
-              thoughts={thoughts}
-              title="Some Feed for Thought(s)..."
-            />
+            <MainList thoughts={thoughts} title="Some Feed for Thought(s)..." />
           )}
         </div>
       </div>

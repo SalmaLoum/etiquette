@@ -3,7 +3,7 @@ import { Navigate, useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 
 import SalonForm from '../components/SalonForm'
-import ThoughtList from '../components/ThoughtList'
+import MainList from '../components/MainList'
 
 import { QUERY_USER, QUERY_ME } from '../utils/queries'
 
@@ -43,7 +43,7 @@ const Profile = () => {
         </h2>
 
         <div className="col-12 col-md-10 mb-5">
-          <ThoughtList
+          <MainList
             thoughts={user.thoughts}
             title={`${user.username}'s thoughts...`}
             showTitle={false}
