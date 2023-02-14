@@ -1037,7 +1037,7 @@ a:hover {
 }
 
 .btn.btn-primary:hover {
-  background-color: #57779a;
+  background-color: #ccfffc;
 }
 
 .btn.btn-danger {
@@ -1092,16 +1092,16 @@ a:hover {
 }
 
 .btn.btn-black:hover {
-  background-color: #666666;
+  background-color: #e8ccff;
 }
 
 .btn.btn-link {
-  background-color: #1b89bc;
+  background-color: #31a9e1;
   color: #ffffff;
 }
 
 .btn.btn-link:hover {
-  background-color: #31a9e1;
+  background-color: #ccf5ff;
 }
 
 .card {
