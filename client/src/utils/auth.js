@@ -38,4 +38,13 @@ class AuthService {
   }
 }
 
+const exportedObject = {
+  getProfile,
+  loggedIn,
+  isTokenExpired,
+  getToken,
+  login,
+  logout,
+}
+
 export default new AuthService()

@@ -109,7 +109,10 @@ const SalonForm = () => {
           >
             Character Count: {characterCount}/280
           </p>
-          <form className="flex-row justify-center justify-space-between-md align-center">
+          <form
+            className="flex-row justify-center justify-space-between-md align-center"
+            onSubmit={handleFormSubmit}
+          >
             <div className="col-12 col-lg-9">
               <textarea
                 name="Salon Name"
@@ -127,13 +130,11 @@ const SalonForm = () => {
             >
               Upload files
             </button>
-
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
                 Add comment for this artist
               </button>
             </div>
-
             {error && (
               <div className="col-12 my-3 bg-danger text-white p-3">
                 {error.message}
