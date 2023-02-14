@@ -1,16 +1,17 @@
+//for admins to add artist's name, salon name, salon address, salon hours, artist's availability
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useMutation } from '@apollo/client'
-// import Widget from '../Cloudinary/Widget'
 
 import { ADD_SALON } from '../../utils/mutations'
 import { QUERY_SALONS, QUERY_ME } from '../../utils/queries'
 
 import Auth from '../../utils/auth'
 
-const ThoughtForm = () => {
+const SalonForm = () => {
   const [salonName, setSalonName] = useState('')
   const [salonAddress, setSalonAddress] = useState('')
+  const [salonHours, setSalonHours] = useState('')
 
   const [characterCount, setCharacterCount] = useState(0)
 
@@ -35,6 +36,7 @@ const ThoughtForm = () => {
       })
     },
   })
+
   // cloudinary
   var openWidget = (e) => {
     e.preventDefault()
@@ -68,6 +70,8 @@ const ThoughtForm = () => {
         variables: {
           salonAddress,
           salonName,
+          salonHours,
+
           // salonName: Auth.getProfile().data.username,
         },
       })
@@ -85,16 +89,18 @@ const ThoughtForm = () => {
 
     if (name === 'salon' && value.length <= 280) {
       setSalonName(value)
+
       setCharacterCount(value.length)
     }
   }
 
   return (
     <div>
-      <h3>What's on your techy mind?</h3>
+      <h3>Booking a nail salon appointment?</h3>
+      <h3>Viewing an nail artist's page?</h3>
 
-      {/* bring logged in back on when ready */}
-      {true ? (
+      {/* bring logged in back on when ready  `      {true ? (` */}
+      {Auth.loggedIn() ? (
         <>
           <p
             className={`m-0 ${
@@ -122,7 +128,12 @@ const ThoughtForm = () => {
               Upload files
             </button>
 
-            <div className="col-12 col-lg-3"></div>
+            <div className="col-12 col-lg-3">
+              <button className="btn btn-primary btn-block py-3" type="submit">
+                Add comment for this artist
+              </button>
+            </div>
+
             {error && (
               <div className="col-12 my-3 bg-danger text-white p-3">
                 {error.message}
@@ -135,12 +146,12 @@ const ThoughtForm = () => {
         </>
       ) : (
         <p>
-          You need to be logged in to share your thoughts. Please{' '}
-          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
+          You need to be logged in first. Please <Link to="/login">login</Link>{' '}
+          or <Link to="/signup">signup.</Link>
         </p>
       )}
     </div>
   )
 }
 
-export default ThoughtForm
+export default SalonForm
