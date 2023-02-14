@@ -1,9 +1,7 @@
-
 //for admins to add artist's name, salon name, salon address, salon hours, artist's availability
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useMutation } from '@apollo/client'
-
 
 import { ADD_SALON } from '../../utils/mutations'
 import { QUERY_SALONS, QUERY_ME } from '../../utils/queries'
@@ -13,6 +11,8 @@ import Auth from '../../utils/auth'
 const ThoughtForm = () => {
   const [salonName, setSalonName] = useState('')
   const [salonAddress, setSalonAddress] = useState('')
+  const [salonHours, setSalonHours] = useState('')
+
   const [characterCount, setCharacterCount] = useState(0)
 
   const [addSalon, { error }] = useMutation(ADD_SALON, {
@@ -62,7 +62,6 @@ const ThoughtForm = () => {
   //   false,
   // )
 
-
   const handleFormSubmit = async (event) => {
     event.preventDefault()
 
@@ -71,12 +70,7 @@ const ThoughtForm = () => {
         variables: {
           salonAddress,
           salonName,
-           salonHours,
-          artist,
-          availability,
-
-         
-
+          salonHours,
 
           // salonName: Auth.getProfile().data.username,
         },
@@ -94,7 +88,6 @@ const ThoughtForm = () => {
     const { name, value } = event.target
 
     if (name === 'salon' && value.length <= 280) {
-
       setSalonName(value)
 
       setCharacterCount(value.length)
@@ -160,4 +153,4 @@ const ThoughtForm = () => {
   )
 }
 
-export default SalonForm
+export default ThoughtForm
