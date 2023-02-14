@@ -19,11 +19,8 @@ html {
  */
 body {
   margin: 0;
-  /* font-family: 'Meera Inimai', sans-serif;
-  /* font-family: 'Mukta', sans-serif;
+  font-family: 'Noto Serif Khojki', serif;
 
-  /* font-family: 'Space Grotesk', sans-serif; */
-  font-family: 'Padauk', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: rgb(254, 252, 228);
@@ -33,11 +30,6 @@ body {
     rgba(255, 254, 236, 1) 52%,
     rgba(255, 255, 255, 1) 100%
   );
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
 }
 
 /**
@@ -72,7 +64,6 @@ hr {
  * 2. Correct the odd `em` font sizing in all browsers.
  */
 pre {
-  font-family: monospace, monospace;
   /* 1 */
   font-size: 1em;
   /* 2 */
@@ -115,7 +106,6 @@ strong {
 
 kbd,
 samp {
-  font-family: monospace, monospace;
   /* 1 */
   font-size: 1em;
   /* 2 */
@@ -371,9 +361,7 @@ body {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol';
+
   font-size: 16px;
   color: #1a1a1a;
 }
@@ -389,7 +377,6 @@ h6 {
 }
 
 h1 {
-  font-family: 'Lobster', cursive;
   font-size: 3rem;
   margin: 0.67em 0;
 }
@@ -907,7 +894,7 @@ a:hover {
 }
 
 .text-danger {
-  color: #e64c66 !important;
+  color: #e6349c !important;
 }
 
 .text-default {
@@ -1005,6 +992,10 @@ a:hover {
   color: #1a1a1a;
   background-color: #aeaeae;
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
 }
 
 .btn:hover {
@@ -1037,7 +1028,7 @@ a:hover {
 }
 
 .btn.btn-primary:hover {
-  background-color: #ccfffc;
+  background-color: #84b8b4;
 }
 
 .btn.btn-danger {
@@ -1101,7 +1092,7 @@ a:hover {
 }
 
 .btn.btn-link:hover {
-  background-color: #ccf5ff;
+  background-color: #31a9e1;
 }
 
 .card {
