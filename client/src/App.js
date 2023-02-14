@@ -16,7 +16,6 @@ import Footer from './components/Footer'
 import SalonList from './components/SalonList'
 
 
-
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',
