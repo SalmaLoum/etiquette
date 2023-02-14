@@ -14,6 +14,7 @@ import Login from './pages/Login'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import SalonList from './components/SalonList'
+import SalonForm from './components/SalonForm'
 
 
 // Construct our main GraphQL API endpoint

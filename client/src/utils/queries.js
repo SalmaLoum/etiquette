@@ -16,14 +16,12 @@ export const QUERY_USER = gql`
 `
 
 export const QUERY_SALONS = gql`
-  query getThoughts {
-    thoughts {
-      _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-    }
+query Query($salonName: String) {
+  appointments(salonName: $salonName) {
+    _id
+    salonName
   }
+}
 `
 
 export const QUERY_SINGLE_THOUGHT = gql`
