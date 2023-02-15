@@ -30,16 +30,16 @@ db.once('open', async () => {
 
     // Todo: Find all appointments
     const appointments = await Appointment.find({})
-    // console.log(appointments)
+
     // Todo: Map through salons
+    // Todo: Map through appointments inside salons
+    // Todo: Push one appointment into array and repeat for all apointments
     salons.forEach(salon => {
       appointments.forEach(appointment => {
         salon.appointments.push(appointment._id)
       })
       console.log(salon.appointments)
     })
-    // Todo: Map through appointments inside salons
-    // Todo: Push one appointment into array and repeat for all apointments
 
   } catch (err) {
     console.error(err);
