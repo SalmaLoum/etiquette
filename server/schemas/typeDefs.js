@@ -52,7 +52,7 @@ const typeDefs = gql`
     user(username: String!): User
     salons: [Salon]
     salon(salonId: ID!): Salon
-    appointments(salonName: String): [Salon]
+    appointments(salonId: ID!): [Salon]
     appointment(appointmentId: ID!): Appointment
     services(datetime: String): [Service]
     service(serviceId: ID!): Service
@@ -63,7 +63,10 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addSalon(salonName: String, salonAddress: String, salonHours: String): Salon
-    addAppointment(appointmentId: ID!): Appointment
+    addAppointment(
+      salonId: ID!
+      datetime: String!
+       ): Salon
     addService(serviceId: ID!): Service
   }
 `;
