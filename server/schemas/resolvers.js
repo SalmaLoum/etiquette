@@ -91,30 +91,51 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in as an admin!')
     },
     addAppointment: async (parent, { salonId, datetime }, context) => {
-      const appointment = await Appointment.create({
-        salonId,
-        datetime
-      });
-      await Salon.findOneAndUpdate(
-        { _id: context.salon._id },
-        { $addToSet: { appointments: appointment._id } }
-      );
-      return appointment;
+      if (context.user) {
 
-      // return Salon.findOneAndUpdate(
-      //   { _id: salonId },
-      //   {
-      //     $addToSet: {
-      //       appointments: { appointments: { datetime } },
-      //     },
-      //   },
-      //   {
-      //     new: true,
-      //     runValidators: true,
-      //   }
-      // )
-
+        const appointmentData = await Appointment.create({ datetime })
+        return Salon.findOneAndUpdate(
+          { _id: salonId },
+          {
+            $addToSet: {
+              appointments: appointmentData._id
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        ).populate("appointments")
+      }
+      throw new AuthenticationError('You need to be logged in to book an appointment!')
     },
+
+
+
+    // const appointment = await Appointment.create({
+    //   salonId,
+    //   datetime
+    // });
+    // await Salon.findOneAndUpdate(
+    //   { _id: context.salon._id },
+    //   { $addToSet: { appointments: appointment._id } }
+    // );
+    // return appointment;
+
+    // return Salon.findOneAndUpdate(
+    //   { _id: salonId },
+    //   {
+    //     $addToSet: {
+    //       appointments: { appointments: { datetime } },
+    //     },
+    //   },
+    //   {
+    //     new: true,
+    //     runValidators: true,
+    //   }
+    // )
+
+
     //   addThought: async (parent, { thoughtText }, context) => {
     //     if (context.user) {
     //       const thought = await Thought.create({
