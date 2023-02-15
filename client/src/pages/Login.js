@@ -69,11 +69,7 @@ const Login = (props) => {
                   value={formState.password}
                   onChange={handleChange}
                 />
-                <button
-                  className="btn btn-block btn-dark"
-                  style={{ cursor: 'pointer' }}
-                  type="submit"
-                >
+                <button className="btn btn-block btn-dark" type="submit">
                   Submit
                 </button>
               </form>
