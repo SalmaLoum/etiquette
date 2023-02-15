@@ -22,15 +22,7 @@ db.once('open', async () => {
     // await Service.create(serviceSeeds)
 
     for (let i = 0; i < appointmentSeeds.length; i++) {
-      const { _id, datetime } = await Appointment.create(appointmentSeeds[i]);
-      const user = await Salon.findOneAndUpdate(
-        { datetime: datetime },
-        {
-          $addToSet: {
-            appointments: _id,
-          },
-        }
-      );
+      await Appointment.create(appointmentSeeds[i]);
     }
 
   } catch (err) {
