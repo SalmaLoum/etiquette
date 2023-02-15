@@ -26,6 +26,20 @@ query Query {
 }
 `
 
+export const QUERY_SINGLE_SALON = gql`
+query Query($salonId: ID!) {
+  salon(salonId: $salonId) {
+    _id
+    salonAddress
+    salonName
+    appointments {
+      _id
+      datetime
+    }
+  }
+}
+`
+
 export const QUERY_SINGLE_THOUGHT = gql`
   query getSingleThought($thoughtId: ID!) {
     thought(thoughtId: $thoughtId) {
