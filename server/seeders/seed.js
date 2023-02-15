@@ -34,8 +34,9 @@ db.once('open', async () => {
     // Todo: Map through salons
     salons.forEach(salon => {
       appointments.forEach(appointment => {
-        console.log(salon._id)
+        salon.appointments.push(appointment._id)
       })
+      console.log(salon.appointments)
     })
     // Todo: Map through appointments inside salons
     // Todo: Push one appointment into array and repeat for all apointments
