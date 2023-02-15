@@ -17,8 +17,8 @@ const SingleSalon = () => {
     });
     const salon = data?.salon || {};
 
-    // Query for the Appointments List come back as an []
-    // Query for all the services for that salon
+    // Todo: Query for the Appointments List come back as an []
+    // Todo: Query for all the services for that salon
 
     // if (loading) {
     //     return < div > loading... </div >
@@ -31,7 +31,7 @@ const SingleSalon = () => {
                     location: {salon.salonAddress}</span>
             </h3>
             {/* For loop 5 times */}
-            <AppointmentList service='mani/pedi' time='8am' />
+            <AppointmentList service='mani/pedi' time={datetime} />
         </div>
 
     )
