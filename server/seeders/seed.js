@@ -25,21 +25,25 @@ db.once('open', async () => {
       await Appointment.create(appointmentSeeds[i]);
     }
 
-    // TODO: Find all Salons
-    const salons = await Salon.find({})
+    // // TODO: Find all Salons
+    // const salons = await Salon.find({})
 
-    // Todo: Find all appointments
-    const appointments = await Appointment.find({})
+    // // Todo: Find all appointments
+    // const appointments = await Appointment.find({})
 
-    // Todo: Map through salons
-    // Todo: Map through appointments inside salons
-    // Todo: Push one appointment into array and repeat for all apointments
-    salons.forEach(salon => {
-      appointments.forEach(appointment => {
-        salon.appointments.push(appointment._id)
-      })
-      console.log(salon.appointments)
-    })
+    // // Todo: Map through salons
+    // // Todo: Map through appointments inside salons
+    // // Todo: Push one appointment into array and repeat for all apointments
+    // salons.forEach(salon => {
+    //   appointments.forEach(async appointment => {
+    //     // salon.appointments.push(appointment._id)
+    //     await Salon.findOneAndUpdate({
+    //       _id: salon._id
+    //     }, {
+    //       appointments: appointment._id
+    //     })
+    //   })
+    // })
 
   } catch (err) {
     console.error(err);
