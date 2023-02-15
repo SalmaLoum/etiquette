@@ -27,11 +27,16 @@ db.once('open', async () => {
 
     // TODO: Find all Salons
     const salons = await Salon.find({})
-    // console.log(salons)
+
     // Todo: Find all appointments
     const appointments = await Appointment.find({})
     // console.log(appointments)
     // Todo: Map through salons
+    salons.forEach(salon => {
+      appointments.forEach(appointment => {
+        console.log(salon._id)
+      })
+    })
     // Todo: Map through appointments inside salons
     // Todo: Push one appointment into array and repeat for all apointments
 
