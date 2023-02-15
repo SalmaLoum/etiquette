@@ -5,7 +5,7 @@ const dateFormat = require('../utils/dateFormat');
 const appointmentSchema = new Schema({
     datetime: {
         type: String,
-        required: true,
+        required: false,
     },
     service: {
         type: Schema.Types.ObjectId,
