@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 import { QUERY_SINGLE_SALON } from '../utils/queries';
+import AppointmentList from '../components/AppointmentList';
 
 const SingleSalon = () => {
     const { salonId } = useParams();
@@ -16,9 +17,12 @@ const SingleSalon = () => {
     });
     const salon = data?.salon || {};
 
-    if (loading) {
-        return < div > loading... </div >
-    }
+    // Query for the Appointments List come back as an []
+    // Query for all the services for that salon
+
+    // if (loading) {
+    //     return < div > loading... </div >
+    // }
     return (
         <div className='my-3'>
             <h3 className="card-header bg-dark text-light p-2 m-8">
@@ -26,6 +30,8 @@ const SingleSalon = () => {
                 <span style={{ fontSize: '1rem' }}>
                     location: {salon.salonAddress}</span>
             </h3>
+            {/* For loop 5 times */}
+            <AppointmentList service='mani/pedi' time='8am' />
         </div>
 
     )
