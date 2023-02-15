@@ -17,7 +17,7 @@ const SalonList = ({ salons }) => {
               Salons
             </h4>
             <p className=" text-center text-black p-2">
-             Click on your favorite salon from this list
+              Click on your favorite salon on this list
             </p>
 
             <div className="card-body flex-row my-6">
