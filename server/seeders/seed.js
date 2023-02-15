@@ -25,6 +25,14 @@ db.once('open', async () => {
       await Appointment.create(appointmentSeeds[i]);
     }
 
+    // TODO: Find all Salons
+    // Todo: Find all appointments
+    const appointments = await Appointment.find({})
+    console.log(appointments)
+    // Todo: Map through salons
+    // Todo: Map through appointments inside salons
+    // Todo: Push one appointment into array and repeat for all apointments
+
   } catch (err) {
     console.error(err);
     process.exit(1);
