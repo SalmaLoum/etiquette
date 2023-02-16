@@ -13,7 +13,9 @@ const Signup = () => {
     password: '',
     isAdmin: false
   })
-  const [addUser, { error, data }] = useMutation(ADD_USER)
+  const [addUser, { data }] = useMutation(ADD_USER)
+  const [userAlert, setUserAlert] = useState(false)
+  const [alertMessage, setAlertMessage] = useState('')
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -37,7 +39,24 @@ const Signup = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault()
-    console.log(formState)
+
+    if (!formState.username) {
+      setAlertMessage('Please Enter a Username')
+      setUserAlert(true)
+      return
+    }
+
+    if (!formState.email) {
+      setAlertMessage('Please Enter an Email')
+      setUserAlert(true)
+      return
+    }
+
+    if (!formState.password) {
+      setAlertMessage('Please Enter a password')
+      setUserAlert(true)
+      return
+    }
 
     try {
       const { data } = await addUser({
@@ -140,9 +159,9 @@ const Signup = () => {
               </form>
             )}
 
-            {error && (
+            {userAlert && (
               <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
+                {alertMessage}
               </div>
             )}
           </div>

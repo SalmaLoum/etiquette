@@ -26,23 +26,32 @@ export const ADD_USER = gql`
 `
 
 export const ADD_SALON = gql`
-mutation AddSalon($salonName: String, $salonAddress: String, $salonHours: String) {
-  addSalon(salonName: $salonName, salonAddress: $salonAddress, salonHours: $salonHours) {
-    _id
-    salonName
-  }
-}
-`
-
-
-export const ADD_APPOINTMENT = gql`
-mutation Mutation($salonId: ID!, $datetime: String!) {
-  addAppointment(salonId: $salonId, datetime: $datetime) {
-    _id
-    appointments {
+  mutation AddSalon(
+    $salonName: String
+    $salonAddress: String
+    $salonHours: String
+    $salonImage: String
+  ) {
+    addSalon(
+      salonName: $salonName
+      salonAddress: $salonAddress
+      salonHours: $salonHours
+      salonImage: $salonImage
+    ) {
       _id
-      datetime
+      salonName
     }
   }
-}
+`
+
+export const ADD_APPOINTMENT = gql`
+  mutation Mutation($salonId: ID!, $datetime: String!) {
+    addAppointment(salonId: $salonId, datetime: $datetime) {
+      _id
+      appointments {
+        _id
+        datetime
+      }
+    }
+  }
 `

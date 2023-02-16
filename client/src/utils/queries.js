@@ -16,33 +16,34 @@ export const QUERY_USER = gql`
 `
 
 export const QUERY_SALONS = gql`
-query Query {
-  salons {
-    _id
-    salonAddress
-    salonName
-    salonHours
+  query Query {
+    salons {
+      _id
+      salonAddress
+      salonName
+      salonHours
+    }
   }
-}
 `
 
 export const QUERY_SINGLE_SALON = gql`
-query Query($salonId: ID!) {
-  salon(salonId: $salonId) {
-    _id
-    salonAddress
-    salonName
-    salonHours
-    appointments {
+  query Query($salonId: ID!) {
+    salon(salonId: $salonId) {
       _id
-      datetime
-      service {
+      salonAddress
+      salonName
+      salonHours
+      salonImage
+      appointments {
         _id
-        serviceType
+        datetime
+        service {
+          _id
+          serviceType
+        }
       }
     }
   }
-}
 `
 
 export const QUERY_SINGLE_THOUGHT = gql`
@@ -61,7 +62,6 @@ export const QUERY_SINGLE_THOUGHT = gql`
     }
   }
 `
-
 
 // export const QUERY_ME = gql`
 //   query me {
