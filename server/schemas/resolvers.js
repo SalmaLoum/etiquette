@@ -98,10 +98,10 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in as an admin!')
     },
-    addAppointment: async (parent, { salonId, datetime }, context) => {
+    addAppointment: async (parent, { salonId, datetime, appointmentService }, context) => {
       if (context.user) {
 
-        const appointmentData = await Appointment.create({ datetime })
+        const appointmentData = await Appointment.create({ datetime, appointmentService })
         return Salon.findOneAndUpdate(
           { _id: salonId },
           {

@@ -33,6 +33,7 @@ const typeDefs = gql`
     _id: ID
     datetime: String
     service: Service
+    appointmentService: String
     createdAt: String
   }
   type Service {
@@ -66,6 +67,7 @@ const typeDefs = gql`
     addAppointment(
       salonId: ID!
       datetime: String!
+      appointmentService: String!
        ): Salon
     addService(appointmentId: ID!, serviceType: String!): Salon
   }

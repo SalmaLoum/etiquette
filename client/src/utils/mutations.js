@@ -35,13 +35,17 @@ mutation AddSalon($salonName: String, $salonAddress: String, $salonHours: String
 
 
 export const ADD_APPOINTMENT = gql`
-mutation Mutation($salonId: ID!, $datetime: String!) {
-  addAppointment(salonId: $salonId, datetime: $datetime) {
+mutation Mutation($salonId: ID!, $datetime: String!, $appointmentService: String!) {
+  addAppointment(salonId: $salonId, datetime: $datetime, appointmentService: $appointmentService) {
     _id
+    salonAddress
+    salonName
     appointments {
       _id
       datetime
+      appointmentService
     }
   }
 }
 `
+

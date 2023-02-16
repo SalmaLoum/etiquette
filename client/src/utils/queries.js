@@ -36,6 +36,7 @@ query Query($salonId: ID!) {
     appointments {
       _id
       datetime
+      appointmentService
       service {
         _id
         serviceType

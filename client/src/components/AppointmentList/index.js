@@ -26,7 +26,7 @@ const AppointmentList = ({ appointments = [] }) => {
                                     <div key={appointment._id} className="col-12 mb-3 pb-3 ">
                                         <div className="p-3">
                                             <Link
-                                                className="btn  btn-lg btn-light btn-block btn-squared"
+                                                className="btn  btn-lg btn-light btn-block btn-squared" appointment={appointment}
                                                 to={`/appointments/${appointment._id}`}
                                             >
                                                 <h5 className="card-header bg-black text-light ">
@@ -35,6 +35,13 @@ const AppointmentList = ({ appointments = [] }) => {
                                                         {appointment.createdAt}
                                                     </span>
                                                 </h5>
+                                                <h5 className="card-header bg-black text-light ">
+                                                    {appointment.appointmentService}
+                                                    <span style={{ fontSize: '0.825rem' }}>
+                                                        {appointment.createdAt}
+                                                    </span>
+                                                </h5>
+
 
                                                 {/* <div className="card-body">
                                                     <p>Address: {salon.salonAddress}</p>
