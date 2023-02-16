@@ -11,6 +11,7 @@ const Signup = () => {
     username: '',
     email: '',
     password: '',
+    isAdmin: false
   })
   const [addUser, { data }] = useMutation(ADD_USER)
   const [userAlert, setUserAlert] = useState(false)
@@ -23,6 +24,17 @@ const Signup = () => {
       ...formState,
       [name]: value,
     })
+  }
+
+  const handleClick = (event) => {
+    const { name, value } = event.target 
+
+    if (name === "isAdmin") {
+      setFormState({
+        ...formState,
+        isAdmin: true,
+      })
+    }
   }
 
   const handleFormSubmit = async (event) => {
@@ -94,6 +106,49 @@ const Signup = () => {
                   value={formState.password}
                   onChange={handleChange}
                 />
+                <div className="form-group">
+  <label htmlFor="role">Select your role:</label>
+  <div className="form-check">
+    <input
+      className="form-check-input"
+      type="radio"
+      name="isClient"
+      id="client"
+      value="client"
+      onChange={handleChange}
+    />
+    <label className="form-check-label" htmlFor="client">
+      Client
+    </label>
+  </div>
+  <div className="form-check">
+    <input
+      className="form-check-input"
+      type="radio"
+      name="isAdmin"
+      id="isAdmin"
+      value={formState.isAdmin}
+      onChange={handleClick}
+    />
+    <label className="form-check-label" htmlFor="isAdmin">
+      Admin
+    </label>
+  </div>
+  <div className="form-check">
+    <input
+      className="form-check-input"
+      type="radio"
+      name="isArtist"
+      id="artist"
+      value="artist"
+      onChange={handleChange}
+    />
+    <label className="form-check-label" htmlFor="artist">
+      Artist
+    </label>
+  </div>
+</div>
+
                 <button
                   className="btn btn-block btn-dark"
                   style={{ cursor: 'pointer' }}

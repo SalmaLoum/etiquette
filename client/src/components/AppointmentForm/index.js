@@ -9,9 +9,10 @@ import Auth from '../../utils/auth'
 
 const AppointmentForm = ({ salonId }) => {
   const [datetime, setdatetime] = useState('')
-  const [service, setService] = useState('')
-  const [userAlert, setUserAlert] = useState(false)
-  const [alertMessage, setAlertMessage] = useState('')
+
+  const [appointmentService, setAppointmentService] = useState('')
+
+  const [error, setError] = useState('')
 
   const [addAppointment, { error: addSalonError }] = useMutation(
     ADD_APPOINTMENT,
@@ -44,18 +45,22 @@ const AppointmentForm = ({ salonId }) => {
         variables: {
           salonId,
           datetime,
-          service,
+          appointmentService,
         },
       })
 
       setdatetime('')
-      setService('')
-    } catch (err) {}
+      setAppointmentService('')
+
+      setError('')
+    } catch (err) {
+      setError(err.message)
+    }
   }
 
   return (
     <div>
-      <h3> Book your appointment</h3>
+      <h3> Add Your Salon Appointment! </h3>
 
       {Auth.loggedIn() ? (
         <>
@@ -74,12 +79,12 @@ const AppointmentForm = ({ salonId }) => {
               ></textarea>
 
               <textarea
-                name="service"
+                name="appointmentService"
                 placeholder="Add Services Here"
-                value={service}
+                value={appointmentService}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
-                onChange={(event) => setService(event.target.value)}
+                onChange={(event) => setAppointmentService(event.target.value)}
               ></textarea>
 
               <button className="btn btn-dark btn-lg py-3" type="submit">

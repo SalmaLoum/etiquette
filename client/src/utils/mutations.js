@@ -13,44 +13,39 @@ export const LOGIN_USER = gql`
 `
 
 export const ADD_USER = gql`
-  mutation addUser($username: String!, $email: String!, $password: String!) {
-    addUser(username: $username, email: $email, password: $password) {
+  mutation addUser($username: String!, $email: String!, $password: String!, $isAdmin: Boolean) {
+    addUser(username: $username, email: $email, password: $password, isAdmin: $isAdmin) {
       token
       user {
         _id
         username
+        isAdmin
       }
     }
   }
 `
 
 export const ADD_SALON = gql`
-  mutation AddSalon(
-    $salonName: String
-    $salonAddress: String
-    $salonHours: String
-    $salonImage: String
-  ) {
-    addSalon(
-      salonName: $salonName
-      salonAddress: $salonAddress
-      salonHours: $salonHours
-      salonImage: $salonImage
-    ) {
+mutation AddSalon($salonName: String, $salonAddress: String, $salonHours: String) {
+  addSalon(salonName: $salonName, salonAddress: $salonAddress, salonHours: $salonHours) {
+    _id
+    salonName
+  }
+}
+`
+
+
+export const ADD_APPOINTMENT = gql`
+mutation Mutation($salonId: ID!, $datetime: String!, $appointmentService: String!) {
+  addAppointment(salonId: $salonId, datetime: $datetime, appointmentService: $appointmentService) {
+    _id
+    salonAddress
+    salonName
+    appointments {
       _id
-      salonName
+      datetime
+      appointmentService
     }
   }
 `
 
-export const ADD_APPOINTMENT = gql`
-  mutation Mutation($salonId: ID!, $datetime: String!) {
-    addAppointment(salonId: $salonId, datetime: $datetime) {
-      _id
-      appointments {
-        _id
-        datetime
-      }
-    }
-  }
-`

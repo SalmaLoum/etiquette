@@ -9,6 +9,7 @@ export const QUERY_USER = gql`
       password
     }
   }
+}
 `
 
 export const QUERY_SALONS = gql`
@@ -26,11 +27,9 @@ export const QUERY_SINGLE_SALON = gql`
   query Query($salonId: ID!) {
     salon(salonId: $salonId) {
       _id
-      salonAddress
-      salonName
-      salonHours
-      salonImage
-      appointments {
+      datetime
+      appointmentService
+      service {
         _id
         datetime
         service {
