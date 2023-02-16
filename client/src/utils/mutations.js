@@ -46,6 +46,5 @@ mutation Mutation($salonId: ID!, $datetime: String!, $appointmentService: String
       appointmentService
     }
   }
-}
 `
 

@@ -12,6 +12,7 @@ const SalonForm = ({ salonId }) => {
   const [salonAddress, setSalonAddress] = useState('')
   //const [artist, setArtist] = useState('')
   const [salonHours, setSalonHours] = useState('')
+  const [salonImage, setSalonImage] = useState('')
   const [error, setError] = useState('')
 
   const [addSalon, { error: addSalonError }] = useMutation(ADD_SALON)
@@ -34,6 +35,7 @@ const SalonForm = ({ salonId }) => {
           salonAddress,
           // //artist,
           salonHours,
+          salonImage,
         },
       })
 
@@ -47,10 +49,7 @@ const SalonForm = ({ salonId }) => {
     }
   }
   // cloudinary
-  var openWidget = (e) => {
-    e.preventDefault()
-    myWidget.open()
-  }
+
   var myWidget = window.cloudinary.createUploadWidget(
     {
       cloudName: 'do6kan0iu',
@@ -59,9 +58,14 @@ const SalonForm = ({ salonId }) => {
     (error, result) => {
       if (!error && result && result.event === 'success') {
         console.log('Done! Here is the image info: ', result.info)
+        setSalonImage(result.info.secure_url)
       }
     },
   )
+  var openWidget = (e) => {
+    e.preventDefault()
+    myWidget.open()
+  }
 
   return (
     <div className="card">
@@ -78,6 +82,15 @@ const SalonForm = ({ salonId }) => {
             className="flex-row justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}
           >
+            <div className="m-1">
+              <button
+                id="upload_widget"
+                class="cloudinary-button btn btn-light btn-lg py-3"
+                onClick={openWidget}
+              >
+                Upload salon images
+              </button>
+            </div>
             <textarea
               name="salonName"
               placeholder="Add Salon Name"
@@ -104,17 +117,9 @@ const SalonForm = ({ salonId }) => {
               style={{ lineHeight: '1.5', resize: 'vertical' }}
               onChange={(event) => setSalonHours(event.target.value)}
             ></textarea>
+
             <div>
-              <button
-                id="upload_widget"
-                class="cloudinary-button btn btn-light btn-lg py-3"
-                onClick={openWidget}
-              >
-                Upload salon images
-              </button>
-            </div>
-            <div class="btn btn-block btn-dark m-4">
-              <button class="btn btn-block btn-dark" type="submit">
+              <button className="btn btn-dark btn-lg py-3" type="submit">
                 Add Salon
               </button>
             </div>

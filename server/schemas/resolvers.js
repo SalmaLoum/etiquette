@@ -1,30 +1,30 @@
-const { AuthenticationError } = require('apollo-server-express');
-const { User, Salon, Appointment, Service } = require('../models');
-const { signToken } = require('../utils/auth');
+const { AuthenticationError } = require('apollo-server-express')
+const { User, Salon, Appointment, Service } = require('../models')
+const { signToken } = require('../utils/auth')
 // methods that interact with the database
-// need to curesponding function 
+// need to curesponding function
 // when query for users, find all salons, populate the classes array, and then i am going to populate the professor field insdie that classes array
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('salons');
+      return User.find().populate('salons')
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('salons');
+      return User.findOne({ username }).populate('salons')
     },
     salons: async () => {
-      return Salon.find().sort({ createdAt: -1 });
+      return Salon.find().sort({ createdAt: -1 })
     },
     // salons: async (parent, { username }) => {
     //   const params = username ? { username } : {};
     //   return Salon.find(params).sort({ createdAt: -1 });
     // },
     salon: async (parent, { salonId }) => {
-      return Salon.findOne({ _id: salonId }).populate('appointments');
+      return Salon.findOne({ _id: salonId }).populate('appointments')
     },
     appointments: async (parent, { salonId }) => {
-      const params = salonId ? { salonId } : {};
-      return Salon.find(params).populate("appointments")
+      const params = salonId ? { salonId } : {}
+      return Salon.find(params).populate('appointments')
     },
     // appointments: async (parent, { salonId }) => {
     //   const params = salonId ? { salonId } : {};
@@ -37,43 +37,42 @@ const resolvers = {
     //   return Service.find(params)
     // },
     services: async (parent, { appointmentId }) => {
-      const params = appointmentId ? { appointmentId } : {};
-      return Appointment.find(params).populate("services")
+      const params = appointmentId ? { appointmentId } : {}
+      return Appointment.find(params).populate('services')
     },
     service: async (parent, { serviceId }) => {
       return Service.findOne({ _id: serviceId })
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('salons');
+        return User.findOne({ _id: context.user._id }).populate('salons')
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError('You need to be logged in!')
     },
   },
 
   Mutation: {
-
     addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
-      const token = signToken(user);
-      return { token, user };
+      const user = await User.create({ username, email, password })
+      const token = signToken(user)
+      return { token, user }
     },
     login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ email })
 
       if (!user) {
-        throw new AuthenticationError('No user found with this email address');
+        throw new AuthenticationError('No user found with this email address')
       }
 
-      const correctPw = await user.isCorrectPassword(password);
+      const correctPw = await user.isCorrectPassword(password)
 
       if (!correctPw) {
-        throw new AuthenticationError('Incorrect credentials');
+        throw new AuthenticationError('Incorrect credentials')
       }
 
-      const token = signToken(user);
+      const token = signToken(user)
 
-      return { token, user };
+      return { token, user }
     },
     // sample addUser request body
     // {
@@ -82,19 +81,24 @@ const resolvers = {
     //   "password": "Password123!"
     // }
     // if userType= admin is true, user can add a salon salon
-    addSalon: async (parent, { salonName, salonAddress, salonHours }, context) => {
+    addSalon: async (
+      parent,
+      { salonName, salonAddress, salonHours, salonImage },
+      context,
+    ) => {
       console.log(context)
       if (context.user) {
         const salon = await Salon.create({
           salonAddress,
           salonName,
-          salonHours
-        });
+          salonHours,
+          salonImage,
+        })
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { salons: salon._id } }
-        );
-        return salon;
+          { $addToSet: { salons: salon._id } },
+        )
+        return salon
       }
       throw new AuthenticationError('You need to be logged in as an admin!')
     },
@@ -106,16 +110,18 @@ const resolvers = {
           { _id: salonId },
           {
             $addToSet: {
-              appointments: appointmentData._id
+              appointments: appointmentData._id,
             },
           },
           {
             new: true,
             runValidators: true,
-          }
-        ).populate("appointments")
+          },
+        ).populate('appointments')
       }
-      throw new AuthenticationError('You need to be logged in to book an appointment!')
+      throw new AuthenticationError(
+        'You need to be logged in to book an appointment!',
+      )
     },
     // addService: async (parent, { appointmentId, serviceType }, context) => {
     //   if (context.user) {
@@ -138,24 +144,26 @@ const resolvers = {
     // },
     addService: async (parent, { appointmentId, serviceType }, context) => {
       if (context.user) {
-
         const serviceData = await Service.create({ serviceType })
         return Salon.findOneAndUpdate(
           { _id: { _id: appointmentId } },
           {
             $addToSet: {
-              appointment: { services: serviceData._id }
+              appointment: { services: serviceData._id },
             },
           },
           {
             new: true,
             runValidators: true,
-          }
-        ).populate("appointment").populate("services")
+          },
+        )
+          .populate('appointment')
+          .populate('services')
       }
-      throw new AuthenticationError('You need to be logged in to book a service!')
+      throw new AuthenticationError(
+        'You need to be logged in to book a service!',
+      )
     },
-
 
     // const appointment = await Appointment.create({
     //   salonId,
@@ -179,7 +187,6 @@ const resolvers = {
     //     runValidators: true,
     //   }
     // )
-
 
     //   addThought: async (parent, { thoughtText }, context) => {
     //     if (context.user) {
@@ -248,6 +255,6 @@ const resolvers = {
     //     throw new AuthenticationError('You need to be logged in!');
     //   },
   },
-};
+}
 
-module.exports = resolvers;
+module.exports = resolvers
