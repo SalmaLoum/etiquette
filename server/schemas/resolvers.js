@@ -26,11 +26,19 @@ const resolvers = {
       const params = salonId ? { salonId } : {};
       return Salon.find(params).populate("appointments")
     },
+    // appointments: async (parent, { salonId }) => {
+    //   const params = salonId ? { salonId } : {};
+    //   return Appointment.find(params).populate("salon")
+    // },
     appointment: async (parent, { appointmentId }) => {
       return Appointment.findOne({ _id: appointmentId })
     },
+    // services: async (parent, { appointmentId }) => {
+    //   return Service.find(params)
+    // },
     services: async (parent, { appointmentId }) => {
-      return Service.find(params)
+      const params = appointmentId ? { appointmentId } : {};
+      return Appointment.find(params).populate("services")
     },
     service: async (parent, { serviceId }) => {
       return Service.findOne({ _id: serviceId })
@@ -109,7 +117,44 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in to book an appointment!')
     },
+    // addService: async (parent, { appointmentId, serviceType }, context) => {
+    //   if (context.user) {
 
+    //     const serviceData = await Service.create({ serviceType })
+    //     return Appointment.findOneAndUpdate(
+    //       { _id: appointmentId },
+    //       {
+    //         $addToSet: {
+    //           services: serviceData._id
+    //         },
+    //       },
+    //       {
+    //         new: true,
+    //         runValidators: true,
+    //       }
+    //     ).populate("services")
+    //   }
+    //   throw new AuthenticationError('You need to be logged in to book a service!')
+    // },
+    addService: async (parent, { appointmentId, serviceType }, context) => {
+      if (context.user) {
+
+        const serviceData = await Service.create({ serviceType })
+        return Salon.findOneAndUpdate(
+          { _id: { _id: appointmentId } },
+          {
+            $addToSet: {
+              appointment: { services: serviceData._id }
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        ).populate("appointment").populate("services")
+      }
+      throw new AuthenticationError('You need to be logged in to book a service!')
+    },
 
 
     // const appointment = await Appointment.create({
