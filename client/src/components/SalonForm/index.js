@@ -62,7 +62,7 @@ const SalonForm = ({ salonId }) => {
       }
     },
   )
-
+  
   return (
     <div className="card">
       <h4 className="card-header text-center bg-dark text-light p-1">
@@ -72,7 +72,7 @@ const SalonForm = ({ salonId }) => {
         If it's not on the list above
       </p>
 
-      {Auth.loggedIn() ? (
+      {Auth.loggedIn() && Auth.isAdmin(Auth.getToken()) ? (
         <>
           <form
             className="flex-row justify-center justify-space-between-md align-center"
