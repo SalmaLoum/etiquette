@@ -31,7 +31,7 @@ const SingleSalon = () => {
                     location: {salon.salonAddress}</span>
             </h3>
             {/* For loop 5 times */}
-            <AppointmentList service='mani/pedi' time={datetime} />
+            <AppointmentList service='mani/pedi' time='datetime' />
         </div>
 
     )
