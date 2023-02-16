@@ -9,15 +9,15 @@ const User = require('./User')
 const serviceSchema = new Schema({
     serviceType: {
         type: String,
-        required: true,
+        required: false,
     },
     price: {
         type: String,
-        required: true,
+        required: false,
     },
     duration: {
         type: String,
-        required: true,
+        required: false,
     },
     // this is technically artist, but artists are also users
     // if user is artist, then user can modify service schema (proces, length)

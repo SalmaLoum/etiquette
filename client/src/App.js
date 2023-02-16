@@ -13,6 +13,7 @@ import Signup from './pages/Signup'
 import Login from './pages/Login'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import SingleSalon from './pages/SingleSalon'
 // import SalonList from './components/SalonList'
 // import SalonForm from './components/SalonForm'
 
@@ -54,7 +55,7 @@ function App() {
               <Route path="/signup" element={<Signup />} />
               <Route
                 path="/salons/:salonId"
-              // element={<Salon />}
+                element={<SingleSalon />}
               />
             </Routes>
           </div>

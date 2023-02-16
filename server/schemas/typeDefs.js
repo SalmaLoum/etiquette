@@ -52,9 +52,9 @@ const typeDefs = gql`
     user(username: String!): User
     salons: [Salon]
     salon(salonId: ID!): Salon
-    appointments(salonName: String): [Salon]
+    appointments(salonId: ID!): [Appointment]
     appointment(appointmentId: ID!): Appointment
-    services(datetime: String): [Service]
+    services(appointmentId: ID!): [Service]
     service(serviceId: ID!): Service
     me: User
   }
@@ -63,8 +63,11 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addSalon(salonName: String, salonAddress: String, salonHours: String): Salon
-    addAppointment(appointmentId: ID!): Appointment
-    addService(serviceId: ID!): Service
+    addAppointment(
+      salonId: ID!
+      datetime: String!
+       ): Salon
+    addService(appointmentId: ID!, serviceType: String!): Salon
   }
 `;
 // less repeating data bw models, more linear path, less hooks and neccesary arguments to pass in request body

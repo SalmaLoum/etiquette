@@ -22,15 +22,23 @@ const resolvers = {
     salon: async (parent, { salonId }) => {
       return Salon.findOne({ _id: salonId }).populate('appointments');
     },
-    appointments: async (parent, { salonName }) => {
-      const params = salonName ? { salonName } : {};
+    appointments: async (parent, { salonId }) => {
+      const params = salonId ? { salonId } : {};
       return Salon.find(params).populate("appointments")
     },
+    // appointments: async (parent, { salonId }) => {
+    //   const params = salonId ? { salonId } : {};
+    //   return Appointment.find(params).populate("salon")
+    // },
     appointment: async (parent, { appointmentId }) => {
       return Appointment.findOne({ _id: appointmentId })
     },
-    services: async (parent, { datetime }) => {
-      return Service.find(params)
+    // services: async (parent, { appointmentId }) => {
+    //   return Service.find(params)
+    // },
+    services: async (parent, { appointmentId }) => {
+      const params = appointmentId ? { appointmentId } : {};
+      return Appointment.find(params).populate("services")
     },
     service: async (parent, { serviceId }) => {
       return Service.findOne({ _id: serviceId })
@@ -90,22 +98,89 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in as an admin!')
     },
-    addAppointment: async (parent, { appointmentId, datetime }, context) => {
+    addAppointment: async (parent, { salonId, datetime }, context) => {
+      if (context.user) {
 
-      return Salon.findOneAndUpdate(
-        { _id: appointmentId },
-        {
-          $addToSet: {
-            appointments: { datetime },
+        const appointmentData = await Appointment.create({ datetime })
+        return Salon.findOneAndUpdate(
+          { _id: salonId },
+          {
+            $addToSet: {
+              appointments: appointmentData._id
+            },
           },
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
-      )
-
+          {
+            new: true,
+            runValidators: true,
+          }
+        ).populate("appointments")
+      }
+      throw new AuthenticationError('You need to be logged in to book an appointment!')
     },
+    // addService: async (parent, { appointmentId, serviceType }, context) => {
+    //   if (context.user) {
+
+    //     const serviceData = await Service.create({ serviceType })
+    //     return Appointment.findOneAndUpdate(
+    //       { _id: appointmentId },
+    //       {
+    //         $addToSet: {
+    //           services: serviceData._id
+    //         },
+    //       },
+    //       {
+    //         new: true,
+    //         runValidators: true,
+    //       }
+    //     ).populate("services")
+    //   }
+    //   throw new AuthenticationError('You need to be logged in to book a service!')
+    // },
+    addService: async (parent, { appointmentId, serviceType }, context) => {
+      if (context.user) {
+
+        const serviceData = await Service.create({ serviceType })
+        return Salon.findOneAndUpdate(
+          { _id: { _id: appointmentId } },
+          {
+            $addToSet: {
+              appointment: { services: serviceData._id }
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        ).populate("appointment").populate("services")
+      }
+      throw new AuthenticationError('You need to be logged in to book a service!')
+    },
+
+
+    // const appointment = await Appointment.create({
+    //   salonId,
+    //   datetime
+    // });
+    // await Salon.findOneAndUpdate(
+    //   { _id: context.salon._id },
+    //   { $addToSet: { appointments: appointment._id } }
+    // );
+    // return appointment;
+
+    // return Salon.findOneAndUpdate(
+    //   { _id: salonId },
+    //   {
+    //     $addToSet: {
+    //       appointments: { appointments: { datetime } },
+    //     },
+    //   },
+    //   {
+    //     new: true,
+    //     runValidators: true,
+    //   }
+    // )
+
+
     //   addThought: async (parent, { thoughtText }, context) => {
     //     if (context.user) {
     //       const thought = await Thought.create({

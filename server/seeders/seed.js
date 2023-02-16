@@ -5,6 +5,7 @@ const userSeeds = require('./userSeeds.json');
 // const serviceSeeds = require('./serviceSeeds.json')
 const salonSeeds = require('./salonSeeds.json')
 const appointmentSeeds = require('./appointmentSeeds.json')
+const serviceSeeds = require('./serviceSeeds.json')
 
 
 db.once('open', async () => {
@@ -22,16 +23,28 @@ db.once('open', async () => {
     // await Service.create(serviceSeeds)
 
     for (let i = 0; i < appointmentSeeds.length; i++) {
-      const { _id, datetime, salonName } = await Appointment.create(appointmentSeeds[i]);
-      const user = await Salon.findOneAndUpdate(
-        { salonName: salonName },
-        {
-          $addToSet: {
-            appointments: _id,
-          },
-        }
-      );
+      await Appointment.create(appointmentSeeds[i]);
     }
+    await Service.create(serviceSeeds)
+    // // TODO: Find all Salons
+    // const salons = await Salon.find({})
+
+    // // Todo: Find all appointments
+    // const appointments = await Appointment.find({})
+
+    // // Todo: Map through salons
+    // // Todo: Map through appointments inside salons
+    // // Todo: Push one appointment into array and repeat for all apointments
+    // salons.forEach(salon => {
+    //   appointments.forEach(async appointment => {
+    //     // salon.appointments.push(appointment._id)
+    //     await Salon.findOneAndUpdate({
+    //       _id: salon._id
+    //     }, {
+    //       appointments: appointment._id
+    //     })
+    //   })
+    // })
 
   } catch (err) {
     console.error(err);

@@ -32,9 +32,14 @@ query Query($salonId: ID!) {
     _id
     salonAddress
     salonName
+    salonHours
     appointments {
       _id
       datetime
+      service {
+        _id
+        serviceType
+      }
     }
   }
 }
@@ -56,6 +61,7 @@ export const QUERY_SINGLE_THOUGHT = gql`
     }
   }
 `
+
 
 // export const QUERY_ME = gql`
 //   query me {
