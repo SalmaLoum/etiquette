@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useMutation } from '@apollo/client'
 
-import { ADD_SALON } from '../../utils/mutations'
+import { ADD_APPOINTMENT } from '../../utils/mutations'
 import { QUERY_SALONS } from '../../utils/queries'
 
 import Auth from '../../utils/auth'
@@ -10,7 +10,7 @@ import Auth from '../../utils/auth'
 const AppointmentForm = ({ salonId }) => {
   const [datetime, setdatetime] = useState('')
   const [service, setService] = useState('')
-  //const [artist, setArtist] = useState('')
+ 
   const [error, setError] = useState('')
 
   const [addAppointment, { error: addSalonError }] = useMutation(ADD_APPOINTMENT)
@@ -20,7 +20,7 @@ const AppointmentForm = ({ salonId }) => {
 
     const handleChange = (event) => {
       const { name, value } = event.target
-      setdatetime(value)
+      setdatetime(value);
     }
 
     try {
@@ -29,13 +29,13 @@ const AppointmentForm = ({ salonId }) => {
           salonId,
           datetime,
           service,
-          // //artist,
+        
         },
       })
 
       setdatetime('')
       setService('')
-      // //setArtist('')
+ 
       setError('')
     } catch (err) {
       setError(err.message)
@@ -56,7 +56,7 @@ const AppointmentForm = ({ salonId }) => {
               <textarea
                 name="datetime"
                 placeholder="Add Appointment Date & Time"
-                value={salonName}
+                value={datetime}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={(event) => setdatetime(event.target.value)}
@@ -65,7 +65,7 @@ const AppointmentForm = ({ salonId }) => {
               <textarea
                 name="service"
                 placeholder="Add Services Here"
-                value={salonAddress}
+                value={service}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={(event) => setService(event.target.value)}

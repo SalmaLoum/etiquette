@@ -8,6 +8,7 @@ import { useQuery } from '@apollo/client';
 
 import { QUERY_SINGLE_SALON } from '../utils/queries';
 import AppointmentList from '../components/AppointmentList';
+import AppointmentForm from '../components/AppointmentForm';
 
 const SingleSalon = () => {
     const { salonId } = useParams();
@@ -32,6 +33,9 @@ const SingleSalon = () => {
             </h3>
             {/* For loop 5 times */}
             <AppointmentList service='mani/pedi' time='datetime' />
+            <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
+<AppointmentForm salonId={salon._id} />
+</div>
         </div>
 
     )
