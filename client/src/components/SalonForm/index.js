@@ -10,13 +10,13 @@ import Auth from '../../utils/auth'
 const SalonForm = ({ salonId }) => {
   const [salonName, setSalonName] = useState('')
   const [salonAddress, setSalonAddress] = useState('')
- 
   const [salonHours, setSalonHours] = useState('')
   const [salonImage, setSalonImage] = useState('')
   const [userAlert, setUserAlert] = useState(false)
   const [alertMessage, setAlertMessage] = useState('')
 
   const [addSalon, { error: addSalonError }] = useMutation(ADD_SALON)
+
   const handleChange = (event) => {
     const { name, value } = event.target
     
@@ -132,7 +132,7 @@ const SalonForm = ({ salonId }) => {
             ></textarea>
 
             {userAlert && (
-              <div className="my-3 p-3 bg-danger text-white block">
+              <div className="my-3 p-3 bg-danger text-white block error">
                 {alertMessage}
               </div>
             )}
