@@ -32,9 +32,14 @@ query Query($salonId: ID!) {
     _id
     salonAddress
     salonName
+    salonHours
     appointments {
       _id
       datetime
+      service {
+        _id
+        serviceType
+      }
     }
   }
 }

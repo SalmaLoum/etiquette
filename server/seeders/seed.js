@@ -5,6 +5,7 @@ const userSeeds = require('./userSeeds.json');
 // const serviceSeeds = require('./serviceSeeds.json')
 const salonSeeds = require('./salonSeeds.json')
 const appointmentSeeds = require('./appointmentSeeds.json')
+const serviceSeeds = require('./serviceSeeds.json')
 
 
 db.once('open', async () => {
@@ -24,7 +25,7 @@ db.once('open', async () => {
     for (let i = 0; i < appointmentSeeds.length; i++) {
       await Appointment.create(appointmentSeeds[i]);
     }
-
+    await Service.create(serviceSeeds)
     // // TODO: Find all Salons
     // const salons = await Salon.find({})
 
