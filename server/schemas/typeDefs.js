@@ -54,7 +54,7 @@ const typeDefs = gql`
     salon(salonId: ID!): Salon
     appointments(salonId: ID!): [Appointment]
     appointment(appointmentId: ID!): Appointment
-    services(datetime: String): [Service]
+    services(appointmentId: ID!): [Service]
     service(serviceId: ID!): Service
     me: User
   }
@@ -67,7 +67,7 @@ const typeDefs = gql`
       salonId: ID!
       datetime: String!
        ): Salon
-    addService(serviceId: ID!): Service
+    addService(appointmentId: ID!, serviceType: String!): Salon
   }
 `;
 // less repeating data bw models, more linear path, less hooks and neccesary arguments to pass in request body
