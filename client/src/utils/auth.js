@@ -11,6 +11,12 @@ class AuthService {
     return token && !this.isTokenExpired(token) ? true : false;
   }
 
+  isAdmin(token) {
+    const decoded = decode(token);
+console.log(decoded)
+    return decoded.data.isAdmin;
+  }
+
   isTokenExpired(token) {
     // Decode the token to get its expiration time that was set by the server
     const decoded = decode(token);

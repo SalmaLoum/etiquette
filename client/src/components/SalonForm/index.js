@@ -75,10 +75,12 @@ const SalonForm = ({ salonId }) => {
       }
     },
   )
+
   var openWidget = (e) => {
     e.preventDefault()
     myWidget.open()
   }
+
 
   return (
     <div className="card">
@@ -89,7 +91,7 @@ const SalonForm = ({ salonId }) => {
         If it's not on the list above
       </p>
 
-      {Auth.loggedIn() ? (
+      {Auth.loggedIn() && Auth.isAdmin(Auth.getToken()) ? (
         <>
           <form
             className="flex-row justify-center justify-space-between-md align-center"
