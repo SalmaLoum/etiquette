@@ -1,18 +1,14 @@
 import { gql } from '@apollo/client'
 
 export const QUERY_USER = gql`
-  query user($username: String!) {
-    user(username: $username) {
-      _id
-      username
-      email
-      thoughts {
-        _id
-        thoughtText
-        createdAt
-      }
-    }
+query Query($username: String!) {
+  user(username: $username) {
+    _id
+    username
+    email
+    password
   }
+}
 `
 
 export const QUERY_SALONS = gql`
@@ -30,11 +26,9 @@ export const QUERY_SINGLE_SALON = gql`
   query Query($salonId: ID!) {
     salon(salonId: $salonId) {
       _id
-      salonAddress
-      salonName
-      salonHours
-      salonImage
-      appointments {
+      datetime
+      appointmentService
+      service {
         _id
         datetime
         service {
