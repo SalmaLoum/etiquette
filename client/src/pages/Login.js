@@ -7,7 +7,9 @@ import Auth from '../utils/auth'
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: '', password: '' })
-  const [login, { error, data }] = useMutation(LOGIN_USER)
+  const [login, { data }] = useMutation(LOGIN_USER)
+  const [userAlert, setUserAlert] = useState(false)
+  const [alertMessage, setAlertMessage] = useState('')
 
   // update state based on form input changes
   const handleChange = (event) => {
@@ -23,6 +25,19 @@ const Login = (props) => {
   const handleFormSubmit = async (event) => {
     event.preventDefault()
     console.log(formState)
+
+    if (!formState.email) {
+      setAlertMessage('Please Enter an Email')
+      setUserAlert(true)
+      return
+    }
+
+    if (!formState.password) {
+      setAlertMessage('Please Enter a password')
+      setUserAlert(true)
+      return
+    }
+
     try {
       const { data } = await login({
         variables: { ...formState },
@@ -75,9 +90,9 @@ const Login = (props) => {
               </form>
             )}
 
-            {error && (
+            {userAlert && (
               <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
+                {alertMessage}
               </div>
             )}
           </div>

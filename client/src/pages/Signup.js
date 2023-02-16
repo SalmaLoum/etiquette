@@ -11,8 +11,11 @@ const Signup = () => {
     username: '',
     email: '',
     password: '',
+    isAdmin: false
   })
-  const [addUser, { error, data }] = useMutation(ADD_USER)
+  const [addUser, { data }] = useMutation(ADD_USER)
+  const [userAlert, setUserAlert] = useState(false)
+  const [alertMessage, setAlertMessage] = useState('')
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -23,9 +26,37 @@ const Signup = () => {
     })
   }
 
+  const handleClick = (event) => {
+    const { name, value } = event.target 
+
+    if (name === "isAdmin") {
+      setFormState({
+        ...formState,
+        isAdmin: true,
+      })
+    }
+  }
+
   const handleFormSubmit = async (event) => {
     event.preventDefault()
-    console.log(formState)
+
+    if (!formState.username) {
+      setAlertMessage('Please Enter a Username')
+      setUserAlert(true)
+      return
+    }
+
+    if (!formState.email) {
+      setAlertMessage('Please Enter an Email')
+      setUserAlert(true)
+      return
+    }
+
+    if (!formState.password) {
+      setAlertMessage('Please Enter a password')
+      setUserAlert(true)
+      return
+    }
 
     try {
       const { data } = await addUser({
@@ -75,6 +106,49 @@ const Signup = () => {
                   value={formState.password}
                   onChange={handleChange}
                 />
+                <div className="form-group">
+  <label htmlFor="role">Select your role:</label>
+  <div className="form-check">
+    <input
+      className="form-check-input"
+      type="radio"
+      name="isClient"
+      id="client"
+      value="client"
+      onChange={handleChange}
+    />
+    <label className="form-check-label" htmlFor="client">
+      Client
+    </label>
+  </div>
+  <div className="form-check">
+    <input
+      className="form-check-input"
+      type="radio"
+      name="isAdmin"
+      id="isAdmin"
+      value={formState.isAdmin}
+      onChange={handleClick}
+    />
+    <label className="form-check-label" htmlFor="isAdmin">
+      Admin
+    </label>
+  </div>
+  <div className="form-check">
+    <input
+      className="form-check-input"
+      type="radio"
+      name="isArtist"
+      id="artist"
+      value="artist"
+      onChange={handleChange}
+    />
+    <label className="form-check-label" htmlFor="artist">
+      Artist
+    </label>
+  </div>
+</div>
+
                 <button
                   className="btn btn-block btn-dark"
                   style={{ cursor: 'pointer' }}
@@ -85,9 +159,9 @@ const Signup = () => {
               </form>
             )}
 
-            {error && (
+            {userAlert && (
               <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
+                {alertMessage}
               </div>
             )}
           </div>

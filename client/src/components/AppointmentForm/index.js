@@ -9,18 +9,35 @@ import Auth from '../../utils/auth'
 
 const AppointmentForm = ({ salonId }) => {
   const [datetime, setdatetime] = useState('')
+
   const [appointmentService, setAppointmentService] = useState('')
 
   const [error, setError] = useState('')
 
-  const [addAppointment, { error: addSalonError }] = useMutation(ADD_APPOINTMENT)
+  const [addAppointment, { error: addSalonError }] = useMutation(
+    ADD_APPOINTMENT,
+  )
 
+  const handleChange = (event) => {
+    const { name, value } = event.target
+    setdatetime(value)
+  }
   const handleFormSubmit = async (event) => {
     event.preventDefault()
+    if (!datetime) {
+      setAlertMessage(
+        'You need to add a service date to resigster an appointment',
+      )
+      setUserAlert(true)
+      return
+    }
 
-    const handleChange = (event) => {
-      const { name, value } = event.target
-      setdatetime(value);
+    if (!service) {
+      setAlertMessage(
+        'You need to add a service type to register an appointment',
+      )
+      setUserAlert(true)
+      return
     }
 
     try {
@@ -29,7 +46,6 @@ const AppointmentForm = ({ salonId }) => {
           salonId,
           datetime,
           appointmentService,
-
         },
       })
 
@@ -71,13 +87,12 @@ const AppointmentForm = ({ salonId }) => {
                 onChange={(event) => setAppointmentService(event.target.value)}
               ></textarea>
 
-
               <button className="btn btn-dark btn-lg py-3" type="submit">
                 Add Appointment
               </button>
-              {error && (
-                <div className="col-12 my-3 bg-danger text-white p-3">
-                  {error.message}
+              {userAlert && (
+                <div className="my-3 p-3 bg-danger text-white block">
+                  {alertMessage}
                 </div>
               )}
             </div>
@@ -85,8 +100,9 @@ const AppointmentForm = ({ salonId }) => {
         </>
       ) : (
         <p>
-          You need to be logged in as an Admin or Artist to add an Appointment. Please{' '}
-          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
+          You need to be logged in as an Admin or Artist to add an Appointment.
+          Please <Link to="/login">login</Link> or{' '}
+          <Link to="/signup">signup.</Link>
         </p>
       )}
     </div>
