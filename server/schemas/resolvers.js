@@ -26,6 +26,10 @@ const resolvers = {
       const params = salonId ? { salonId } : {};
       return Salon.find(params).populate("appointments")
     },
+    // appointments: async (parent, { salonId }) => {
+    //   const params = salonId ? { salonId } : {};
+    //   return Appointment.find(params).populate("salon")
+    // },
     appointment: async (parent, { appointmentId }) => {
       return Appointment.findOne({ _id: appointmentId })
     },
