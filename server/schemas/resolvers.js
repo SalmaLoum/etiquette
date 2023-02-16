@@ -1,9 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express')
 const { User, Salon, Appointment, Service } = require('../models')
 const { signToken } = require('../utils/auth')
-// methods that interact with the database
-// need to curesponding function
-// when query for users, find all salons, populate the classes array, and then i am going to populate the professor field insdie that classes array
+
 const resolvers = {
   Query: {
     users: async () => {
@@ -15,10 +13,7 @@ const resolvers = {
     salons: async () => {
       return Salon.find().sort({ createdAt: -1 })
     },
-    // salons: async (parent, { username }) => {
-    //   const params = username ? { username } : {};
-    //   return Salon.find(params).sort({ createdAt: -1 });
-    // },
+
     salon: async (parent, { salonId }) => {
       return Salon.findOne({ _id: salonId }).populate('appointments')
     },
@@ -26,16 +21,11 @@ const resolvers = {
       const params = salonId ? { salonId } : {}
       return Salon.find(params).populate('appointments')
     },
-    // appointments: async (parent, { salonId }) => {
-    //   const params = salonId ? { salonId } : {};
-    //   return Appointment.find(params).populate("salon")
-    // },
+
     appointment: async (parent, { appointmentId }) => {
       return Appointment.findOne({ _id: appointmentId })
     },
-    // services: async (parent, { appointmentId }) => {
-    //   return Service.find(params)
-    // },
+
     services: async (parent, { appointmentId }) => {
       const params = appointmentId ? { appointmentId } : {}
       return Appointment.find(params).populate('services')
@@ -74,13 +64,7 @@ const resolvers = {
 
       return { token, user }
     },
-    // sample addUser request body
-    // {
-    //   "username": "kaylacasale",
-    //   "email": "kayla.casale@gmail.com",
-    //   "password": "Password123!"
-    // }
-    // if userType= admin is true, user can add a salon salon
+
     addSalon: async (
       parent,
       { salonName, salonAddress, salonHours, salonImage },
@@ -94,17 +78,21 @@ const resolvers = {
           salonHours,
           salonImage,
         })
+
         await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { salons: salon._id } },
         )
+
         return salon
       }
+
       throw new AuthenticationError('You need to be logged in as an admin!')
     },
     addAppointment: async (parent, { salonId, datetime }, context) => {
       if (context.user) {
         const appointmentData = await Appointment.create({ datetime })
+
         return Salon.findOneAndUpdate(
           { _id: salonId },
           {
@@ -112,6 +100,7 @@ const resolvers = {
               appointments: appointmentData._id,
             },
           },
+
           {
             new: true,
             runValidators: true,
@@ -122,25 +111,7 @@ const resolvers = {
         'You need to be logged in to book an appointment!',
       )
     },
-    // addService: async (parent, { appointmentId, serviceType }, context) => {
-    //   if (context.user) {
 
-    //     const serviceData = await Service.create({ serviceType })
-    //     return Appointment.findOneAndUpdate(
-    //       { _id: appointmentId },
-    //       {
-    //         $addToSet: {
-    //           services: serviceData._id
-    //         },
-    //       },
-    //       {
-    //         new: true,
-    //         runValidators: true,
-    //       }
-    //     ).populate("services")
-    //   }
-    //   throw new AuthenticationError('You need to be logged in to book a service!')
-    // },
     addService: async (parent, { appointmentId, serviceType }, context) => {
       if (context.user) {
         const serviceData = await Service.create({ serviceType })
@@ -163,97 +134,15 @@ const resolvers = {
         'You need to be logged in to book a service!',
       )
     },
-
-    // const appointment = await Appointment.create({
-    //   salonId,
-    //   datetime
-    // });
-    // await Salon.findOneAndUpdate(
-    //   { _id: context.salon._id },
-    //   { $addToSet: { appointments: appointment._id } }
-    // );
-    // return appointment;
-
-    // return Salon.findOneAndUpdate(
-    //   { _id: salonId },
-    //   {
-    //     $addToSet: {
-    //       appointments: { appointments: { datetime } },
-    //     },
-    //   },
-    //   {
-    //     new: true,
-    //     runValidators: true,
-    //   }
-    // )
-
-    //   addThought: async (parent, { thoughtText }, context) => {
-    //     if (context.user) {
-    //       const thought = await Thought.create({
-    //         thoughtText,
-    //         thoughtAuthor: context.user.username,
-    //       });
-
-    //       await User.findOneAndUpdate(
-    //         { _id: context.user._id },
-    //         { $addToSet: { thoughts: thought._id } }
-    //       );
-
-    //       return thought;
-    //     }
-    //     throw new AuthenticationError('You need to be logged in!');
-    //   },
-    //   addComment: async (parent, { thoughtId, commentText }, context) => {
-    //     if (context.user) {
-    //       return Thought.findOneAndUpdate(
-    //         { _id: thoughtId },
-    //         {
-    //           $addToSet: {
-    //             comments: { commentText, commentAuthor: context.user.username },
-    //           },
-    //         },
-    //         {
-    //           new: true,
-    //           runValidators: true,
-    //         }
-    //       );
-    //     }
-    //     throw new AuthenticationError('You need to be logged in!');
-    //   },
-    //   removeThought: async (parent, { thoughtId }, context) => {
-    //     if (context.user) {
-    //       const thought = await Thought.findOneAndDelete({
-    //         _id: thoughtId,
-    //         thoughtAuthor: context.user.username,
-    //       });
-
-    //       await User.findOneAndUpdate(
-    //         { _id: context.user._id },
-    //         { $pull: { thoughts: thought._id } }
-    //       );
-
-    //       return thought;
-    //     }
-    //     throw new AuthenticationError('You need to be logged in!');
-    //   },
-    //   removeComment: async (parent, { thoughtId, commentId }, context) => {
-    //     if (context.user) {
-    //       return Thought.findOneAndUpdate(
-    //         { _id: thoughtId },
-    //         {
-    //           $pull: {
-    //             comments: {
-    //               _id: commentId,
-    //               commentAuthor: context.user.username,
-    //             },
-    //           },
-    //         },
-    //         { new: true }
-    //       );
-    //     }
-    //     throw new AuthenticationError('You need to be logged in!');
-    //   },
   },
 }
 
 module.exports = resolvers
+
+
+
+// if (!datetime) {
+//   throw new AuthenticationError(
+//     'You need to add a date and time to register an appointmnet!',
+//   )
+// }

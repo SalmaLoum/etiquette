@@ -10,23 +10,39 @@ import Auth from '../../utils/auth'
 const SalonForm = ({ salonId }) => {
   const [salonName, setSalonName] = useState('')
   const [salonAddress, setSalonAddress] = useState('')
-  //const [artist, setArtist] = useState('')
+ 
   const [salonHours, setSalonHours] = useState('')
   const [salonImage, setSalonImage] = useState('')
-  const [error, setError] = useState('')
+  const [userAlert, setUserAlert] = useState(false)
+  const [alertMessage, setAlertMessage] = useState('')
 
   const [addSalon, { error: addSalonError }] = useMutation(ADD_SALON)
-
+  const handleChange = (event) => {
+    const { name, value } = event.target
+    
+    setSalonName(value)
+  
+  }
   const handleFormSubmit = async (event) => {
     event.preventDefault()
 
-    const handleChange = (event) => {
-      const { name, value } = event.target
-      // if (name === 'salonName' && value.length <= 280) {
-      setSalonName(value)
-      //   }
+    if (!salonAddress) {
+      setAlertMessage('You need to add a salon address to resigster a salon')
+      setUserAlert(true)
+      return
     }
 
+    if (!salonName) {
+      setAlertMessage('You need to add a salon name to register a salon')
+      setUserAlert(true)
+      return
+    }
+
+    if (!salonHours) {
+      setAlertMessage('You need to add the salon hours to register a salon')
+      setUserAlert(true)
+      return
+    }
     try {
       const { data } = await addSalon({
         variables: {
@@ -43,10 +59,7 @@ const SalonForm = ({ salonId }) => {
       setSalonAddress('')
       // //setArtist('')
       setSalonHours('')
-      setError('')
-    } catch (err) {
-      setError(err.message)
-    }
+    } catch (err) {}
   }
   // cloudinary
 
@@ -118,16 +131,17 @@ const SalonForm = ({ salonId }) => {
               onChange={(event) => setSalonHours(event.target.value)}
             ></textarea>
 
+            {userAlert && (
+              <div className="my-3 p-3 bg-danger text-white block">
+                {alertMessage}
+              </div>
+            )}
+            <br></br>
             <div>
               <button className="btn btn-dark btn-lg py-3" type="submit">
                 Add Salon
               </button>
             </div>
-            {error && (
-              <div className="col-12 my-3 bg-danger text-white p-3">
-                {error.message}
-              </div>
-            )}
           </form>
         </>
       ) : (
