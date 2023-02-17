@@ -31,6 +31,7 @@ export const ADD_SALON = gql`
     $salonName: String
     $salonAddress: String
     $salonHours: String
+    $salonImage: String
   ) {
     addSalon(
       salonName: $salonName
