@@ -1,7 +1,6 @@
 import { useQuery } from '@apollo/client'
 import React from 'react'
 // import { Link } from 'react-router-dom'
-
 import { QUERY_ME } from '../../utils/queries'
 
 const Profile = () => {
@@ -20,6 +19,10 @@ const Profile = () => {
             {' '}
             {user.username}'s profile
           </h4>
+
+          <div>
+
+          </div>
         </div>
       </div>
     </div>
