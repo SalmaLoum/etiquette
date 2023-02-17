@@ -34,6 +34,7 @@ const typeDefs = gql`
     _id: ID
     datetime: String
     service: Service
+    appointmentService: String
     createdAt: String
   }
   type Service {
@@ -61,15 +62,14 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!, isAdmin: Boolean, isClient: Boolean, isArtist: Boolean): Auth
     login(email: String!, password: String!): Auth
-    addSalon(
-      salonName: String
-      salonAddress: String
-      salonHours: String
-      salonImage: String
-    ): Salon
-    addAppointment(salonId: ID!, datetime: String!): Salon
+    addSalon(salonName: String, salonAddress: String, salonHours: String): Salon
+    addAppointment(
+      salonId: ID!
+      datetime: String!
+      appointmentService: String!
+       ): Salon
     addService(appointmentId: ID!, serviceType: String!): Salon
   }
 `
