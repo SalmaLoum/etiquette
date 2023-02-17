@@ -12,9 +12,6 @@ const AppointmentForm = ({ salonId }) => {
   const [userAlert, setUserAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
 
-  const [addAppointment] = useMutation(ADD_APPOINTMENT);
-
-
   const [addAppointment] = useMutation(ADD_APPOINTMENT)
 
   const handleFormSubmit = async (event) => {

@@ -11,7 +11,6 @@ export const QUERY_USER = gql`
   }
 `;
 
-
 export const QUERY_SALONS = gql`
   query Query {
     salons {
@@ -39,6 +38,7 @@ export const QUERY_SINGLE_SALON = gql`
       }
     }
   }
+`;
 
 export const QUERY_ME = gql`
   query me {
@@ -49,4 +49,4 @@ export const QUERY_ME = gql`
       password
     }
   }
-`
+`;
