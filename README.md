@@ -1,18 +1,19 @@
 # Etiquette
 
 ![Github license](https://img.shields.io/static/v1?label=License&message=MIT&color=informational)
+![React license](https://img.shields.io/static/v1?label=License&message=React&color=green)
+
+
 
 ## Description
 
 Etiquette is a full-stack application where nail salon clients and artists can create an account, or log in.
 
-Users on the homepage can find their nearest nail artist based on their location.
-
-Users can go to the artist's profile, choose to make an appointmnet or view artists's previous work.
+Users on the homepage can find nail salons. They can go to the artist's profile, choose to make an appointmnet or view artists's previous work.
 
 Whether you're looking to make a quick nail salon appointment, or to get inspired by a nail artist's work, we have the app for you. With a user-friendly interface and a variety of nail salon artists to choose from, you'll be getting your nails galmmed in no time!
 
-![Etiquette]()
+![Etiquette](./images/ettiquette.gif)
 
 ## Table of Contents
 
@@ -30,11 +31,11 @@ Go to [app page](https://immense-ridge-33507.herokuapp.com/) and follow the prom
 
 - Click to `login` or `sign up` for a new profile.
 
-- When you're directed to the Profile page you'll be able to choose from several nail artists' information.
+- When you're directed to the Profile page you'll be able to choose from several nail salons.
 
-- Click on an artist's image to view their details.
+- Click on an salon's link to view their details or to register an appointment.
 
-- Choose a time frame from their calendar, email them or choose
+- Add a time frame and a service and submit your form!
 
 ## Credits
 
@@ -46,13 +47,12 @@ Go to [app page](https://immense-ridge-33507.herokuapp.com/) and follow the prom
 
 ### Applications used:
 
-- [Bootstrap](https://getbootstrap.com/)
+
 - [Cloudinary](https://cloudinary.com/documentation/upload_widget)
 - [Google Fonts](https://fonts.google.com/about)
 - [Heroku](https://dashboard.heroku.com/)
 - [Mongo DB](https://www.mongodb.com)
 - [React](www.reactjs.org)
-- [React Calendar](https://www.npmjs.com/package/react-calendar)
 - [UCLA Extension Bootcamp](https://www.uclaextension.edu/?gclid=Cj0KCQiAgribBhDkARIsAASA5btdbwAz8x25r3b1deoRNIGxfkPFL11rAQMuCgQ7HYiqBH8CLr9CgLoaAktlEALw_wcB&gclsrc=aw.ds)
 
 ## License

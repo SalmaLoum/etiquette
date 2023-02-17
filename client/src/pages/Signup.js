@@ -25,17 +25,16 @@ const Signup = () => {
     })
   }
 
+  // const handleClick = (event) => {
+  //   const { name } = event.target
 
-  const handleClick = (event) => {
-    const { name } = event.target 
-
-    if (name === "isAdmin") {
-      setFormState({
-        ...formState,
-        isAdmin: true,
-      })
-    }
-  }
+  //   if (name === "isAdmin") {
+  //     setFormState({
+  //       ...formState,
+  //       isAdmin: true,
+  //     })
+  //   }
+  // }
 
   const handleFormSubmit = async (event) => {
     event.preventDefault()
