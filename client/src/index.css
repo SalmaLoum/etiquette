@@ -1369,6 +1369,7 @@ label form [type='radio'] {
 
 .block {
   display: block;
+  font-size: 1.2rem;
 }
 /* col-sm */
 @media screen and (min-width: 640px) {

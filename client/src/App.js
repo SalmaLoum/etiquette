@@ -57,8 +57,6 @@ function App() {
                 path="/salons/:salonId"
                 element={<SingleSalon />}
               />
-              {/* <Route path="/appointments/:appointmentId" element={<SingleAppointment.js />}
-              /> */}
             </Routes>
           </div>
           <Footer />
