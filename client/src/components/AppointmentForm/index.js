@@ -14,6 +14,9 @@ const AppointmentForm = ({ salonId }) => {
 
   const [addAppointment] = useMutation(ADD_APPOINTMENT);
 
+
+  const [addAppointment] = useMutation(ADD_APPOINTMENT)
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     if (!datetime) {
@@ -80,7 +83,9 @@ const AppointmentForm = ({ salonId }) => {
                 Add Appointment
               </button>
               {userAlert && (
+
                 <div className='my-3 p-3 bg-danger text-white block'>
+
                   {alertMessage}
                 </div>
               )}
