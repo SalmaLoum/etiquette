@@ -7,6 +7,9 @@ import { ADD_APPOINTMENT } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
 const AppointmentForm = ({ salonId }) => {
+
+  
+  const [service, setService] = useState('')
   const [datetime, setdatetime] = useState('');
   const [appointmentService, setAppointmentService] = useState('');
   const [userAlert, setUserAlert] = useState(false);
@@ -37,19 +40,25 @@ const AppointmentForm = ({ salonId }) => {
         variables: {
           salonId,
           datetime,
+
           appointmentService,
+
         },
       });
 
+
       setdatetime('');
       setAppointmentService('');
+
     } catch (err) {
     }
   };
 
   return (
     <div>
+
       <h3> Add Your Salon Appointment! </h3>
+
 
       {Auth.loggedIn() ? (
         <>
@@ -76,7 +85,10 @@ const AppointmentForm = ({ salonId }) => {
                 onChange={(event) => setAppointmentService(event.target.value)}
               ></textarea>
 
-              <button className='btn btn-dark btn-lg py-3' type='submit'>
+
+
+              <button className="btn btn-dark btn-lg py-3" type="submit">
+
                 Add Appointment
               </button>
               {userAlert && (
