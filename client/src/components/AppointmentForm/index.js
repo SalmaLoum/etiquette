@@ -33,7 +33,7 @@ const AppointmentForm = ({ salonId }) => {
     }
 
     try {
-      const { data } = await addAppointment({
+      await addAppointment({
         variables: {
           salonId,
           datetime,

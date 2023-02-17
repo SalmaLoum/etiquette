@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { useMutation } from '@apollo/client'
 
 import { ADD_SALON } from '../../utils/mutations'
-import { QUERY_SALONS } from '../../utils/queries'
 
 import Auth from '../../utils/auth'
 
@@ -16,13 +15,8 @@ const SalonForm = ({ salonId }) => {
   const [userAlert, setUserAlert] = useState(false)
   const [alertMessage, setAlertMessage] = useState('')
 
-  const [addSalon, { error: addSalonError }] = useMutation(ADD_SALON)
-  const handleChange = (event) => {
-    const { name, value } = event.target
-    
-    setSalonName(value)
-  
-  }
+  const [addSalon] = useMutation(ADD_SALON)
+ 
   const handleFormSubmit = async (event) => {
     event.preventDefault()
 
@@ -44,12 +38,11 @@ const SalonForm = ({ salonId }) => {
       return
     }
     try {
-      const { data } = await addSalon({
+      await addSalon({
         variables: {
           salonId,
           salonName,
           salonAddress,
-          // //artist,
           salonHours,
           salonImage,
         },
@@ -57,7 +50,6 @@ const SalonForm = ({ salonId }) => {
 
       setSalonName('')
       setSalonAddress('')
-      // //setArtist('')
       setSalonHours('')
     } catch (err) {}
   }

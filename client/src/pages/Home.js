@@ -5,7 +5,7 @@ import SalonList from '../components/SalonList'
 import SalonForm from '../components/SalonForm'
 
 import { QUERY_SALONS } from '../utils/queries'
-import MapContainer from '../components/MapContainer'
+// import MapContainer from '../components/MapContainer'
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_SALONS)
