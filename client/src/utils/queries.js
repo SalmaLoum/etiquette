@@ -6,7 +6,11 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      password
+      thoughts {
+        _id
+        thoughtText
+        createdAt
+      }
     }
   }
 `
@@ -59,13 +63,17 @@ export const QUERY_SINGLE_THOUGHT = gql`
   }
 `
 
-export const QUERY_ME = gql`
-  query me {
-    me {
-      _id
-      username
-      email
-     password
-    }
-  }
-`
+// export const QUERY_ME = gql`
+//   query me {
+//     me {
+//       _id
+//       username
+//       email
+//       thoughts {
+//         _id
+//         thoughtText
+//         thoughtAuthor
+//         createdAt
+//       }
+//     }
+//   }

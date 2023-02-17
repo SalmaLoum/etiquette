@@ -1000,10 +1000,6 @@ a:hover {
   display: flex !important;
 }
 
-.error {
-  font-size: 1.3rem;
-}
-
 .btn {
   text-align: center;
   display: inline-block;

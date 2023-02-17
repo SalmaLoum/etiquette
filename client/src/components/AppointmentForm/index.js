@@ -86,7 +86,7 @@ const AppointmentForm = ({ salonId }) => {
                 Add Appointment
               </button>
               {userAlert && (
-                <div className="my-3 p-3 bg-danger text-white block error">
+                <div className="my-3 p-3 bg-danger text-white block">
                   {alertMessage}
                 </div>
               )}
