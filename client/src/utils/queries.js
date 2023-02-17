@@ -1,7 +1,7 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client';
 
 export const QUERY_USER = gql`
-  query user($username: String!) {
+  query Query($username: String!) {
     user(username: $username) {
       _id
       username
@@ -9,7 +9,8 @@ export const QUERY_USER = gql`
       password
     }
   }
-`
+`;
+
 
 export const QUERY_SALONS = gql`
   query Query {
@@ -20,7 +21,7 @@ export const QUERY_SALONS = gql`
       salonHours
     }
   }
-`
+`;
 
 export const QUERY_SINGLE_SALON = gql`
   query Query($salonId: ID!) {
@@ -38,24 +39,6 @@ export const QUERY_SINGLE_SALON = gql`
       }
     }
   }
-`
-
-// export const QUERY_SINGLE_THOUGHT = gql`
-//   query getSingleThought($thoughtId: ID!) {
-//     thought(thoughtId: $thoughtId) {
-//       _id
-//       thoughtText
-//       thoughtAuthor
-//       createdAt
-//       comments {
-//         _id
-//         commentText
-//         commentAuthor
-//         createdAt
-//       }
-//     }
-//   }
-// `
 
 export const QUERY_ME = gql`
   query me {

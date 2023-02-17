@@ -27,7 +27,7 @@ const Signup = () => {
   }
 
   const handleClick = (event) => {
-    const { name, value } = event.target 
+    const { name } = event.target 
 
     if (name === "isAdmin") {
       setFormState({

@@ -35,7 +35,7 @@ const SingleSalon = () => {
               {salon.salonImage ? (
                 <img
                   src={salon.salonImage}
-                  alt="Nails image"
+                  alt="Nails"
                   class="image-height"
                   width="100px"
                 />

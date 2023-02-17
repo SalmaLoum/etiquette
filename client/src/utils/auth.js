@@ -13,7 +13,7 @@ class AuthService {
 
   isAdmin(token) {
     const decoded = decode(token);
-console.log(decoded)
+    console.log(decoded);
     return decoded.data.isAdmin;
   }
 
