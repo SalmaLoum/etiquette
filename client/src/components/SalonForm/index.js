@@ -138,7 +138,7 @@ const SalonForm = ({ salonId }) => {
           </form>
         </>
       ) : (
-        <p class='bold'>
+        <p className='bold'>
           You need to be logged in as an Admin to add a Salon. Please{' '}
           <Link to='/login'>login</Link> or <Link to='/signup'>signup.</Link>
         </p>
