@@ -14,6 +14,10 @@ const AppointmentForm = ({ salonId }) => {
 
   const [addAppointment] = useMutation(ADD_APPOINTMENT)
 
+  const [error, setError] = useState('')
+  console.log(error)
+
+
   const [userAlert, setUserAlert] = useState(false)
   const [alertMessage, setAlertMessage] = useState('')
 
