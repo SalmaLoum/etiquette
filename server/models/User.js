@@ -24,18 +24,6 @@ const userSchema = new Schema({
     type: String,
     required: false,
   },
-  isAdmin: {
-    type: Boolean,
-    required: false,
-  },
-  isArtist: {
-    type: Boolean,
-    required: false,
-  },
-  isClient: {
-    type: Boolean,
-    required: false,
-  },
   salons: [
     {
       type: Schema.Types.ObjectId,

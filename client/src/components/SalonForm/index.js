@@ -10,7 +10,7 @@ import Auth from '../../utils/auth'
 const SalonForm = ({ salonId }) => {
   const [salonName, setSalonName] = useState('')
   const [salonAddress, setSalonAddress] = useState('')
- 
+
   const [salonHours, setSalonHours] = useState('')
   const [salonImage, setSalonImage] = useState('')
   const [userAlert, setUserAlert] = useState(false)
@@ -19,9 +19,9 @@ const SalonForm = ({ salonId }) => {
   const [addSalon, { error: addSalonError }] = useMutation(ADD_SALON)
   const handleChange = (event) => {
     const { name, value } = event.target
-    
+
     setSalonName(value)
-  
+
   }
   const handleFormSubmit = async (event) => {
     event.preventDefault()
@@ -59,7 +59,7 @@ const SalonForm = ({ salonId }) => {
       setSalonAddress('')
       // //setArtist('')
       setSalonHours('')
-    } catch (err) {}
+    } catch (err) { }
   }
   // cloudinary
 
@@ -76,12 +76,6 @@ const SalonForm = ({ salonId }) => {
     },
   )
 
-  var openWidget = (e) => {
-    e.preventDefault()
-    myWidget.open()
-  }
-
-
   return (
     <div className="card">
       <h4 className="card-header text-center bg-dark text-light p-1">
@@ -91,7 +85,7 @@ const SalonForm = ({ salonId }) => {
         If it's not on the list above
       </p>
 
-      {Auth.loggedIn() && Auth.isAdmin(Auth.getToken()) ? (
+      {Auth.loggedIn() ? (
         <>
           <form
             className="flex-row justify-center justify-space-between-md align-center"
