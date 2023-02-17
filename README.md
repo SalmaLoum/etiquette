@@ -13,7 +13,7 @@ Users on the homepage can find nail salons. They can go to the artist's profile,
 
 Whether you're looking to make a quick nail salon appointment, or to get inspired by a nail artist's work, we have the app for you. With a user-friendly interface and a variety of nail salon artists to choose from, you'll be getting your nails galmmed in no time!
 
-![Etiquette]()
+![Etiquette](./images/ettiquette.gif)
 
 ## Table of Contents
 
