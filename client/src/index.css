@@ -147,6 +147,12 @@ img {
   border-style: none;
 }
 
+.image-height {
+  height: 100;
+  width: 100;
+  border-radius: 50%;
+}
+
 /* Forms
    ========================================================================== */
 /**
@@ -994,6 +1000,10 @@ a:hover {
   display: flex !important;
 }
 
+.error {
+  font-size: 1.3rem;
+}
+
 .btn {
   text-align: center;
   display: inline-block;
@@ -1007,7 +1017,7 @@ a:hover {
   color: #1a1a1a;
   background-color: #aeaeae;
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 8px 15px grey;
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
@@ -1361,6 +1371,9 @@ label form [type='radio'] {
   max-width: 100%;
 }
 
+.block {
+  display: block;
+}
 /* col-sm */
 @media screen and (min-width: 640px) {
   .col-sm-auto {

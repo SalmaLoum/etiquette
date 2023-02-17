@@ -12,6 +12,10 @@ const appointmentSchema = new Schema({
         ref: 'Service'
 
     },
+    appointmentService: {
+        type: String,
+        required: false
+    },
     createdAt: {
         type: Date,
         default: Date.now,

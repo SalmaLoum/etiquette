@@ -13,7 +13,9 @@ const Signup = () => {
     password: '',
     isAdmin: false
   })
-  const [addUser, { error, data }] = useMutation(ADD_USER)
+  const [addUser, { data }] = useMutation(ADD_USER)
+  const [userAlert, setUserAlert] = useState(false)
+  const [alertMessage, setAlertMessage] = useState('')
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -25,7 +27,7 @@ const Signup = () => {
   }
 
   const handleClick = (event) => {
-    const { name, value } = event.target 
+    const { name } = event.target 
 
     if (name === "isAdmin") {
       setFormState({
@@ -37,7 +39,24 @@ const Signup = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault()
-    console.log(formState)
+
+    if (!formState.username) {
+      setAlertMessage('Please Enter a Username')
+      setUserAlert(true)
+      return
+    }
+
+    if (!formState.email) {
+      setAlertMessage('Please Enter an Email')
+      setUserAlert(true)
+      return
+    }
+
+    if (!formState.password) {
+      setAlertMessage('Please Enter a password')
+      setUserAlert(true)
+      return
+    }
 
     try {
       const { data } = await addUser({
@@ -54,7 +73,7 @@ const Signup = () => {
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
         <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
+          <h4 className="card-header bg-dark text-light p-2 m-0">Sign Up</h4>
           <div className="card-body">
             {data ? (
               <p>
@@ -140,9 +159,9 @@ const Signup = () => {
               </form>
             )}
 
-            {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
+            {userAlert && (
+              <div className="my-3 p-3 bg-danger text-white error block">
+                {alertMessage}
               </div>
             )}
           </div>
