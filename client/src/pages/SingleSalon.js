@@ -19,10 +19,6 @@ const SingleSalon = () => {
   })
   const salon = data?.salon || {}
 
-  // Todo: Query for the Appointments List come back as an []
-  // Todo: Query for all the services for that salon
-  // const { loading, data } = useQuery(QUERY_APPOINTMENTS)
-
   if (loading) {
     return <div> loading... </div>
   }
