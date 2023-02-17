@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
 import React from 'react'
-import { Link, useParams } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 import { QUERY_ME } from '../../utils/queries'
 
