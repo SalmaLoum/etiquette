@@ -1,26 +1,27 @@
-import React from 'react';
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
+// import React from 'react';
+// import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
-const MapContainer = () => {
+// const MapContainer = () => {
   
-  const mapStyles = {        
-    height: "100vh",
-    width: "100%"};
+//   const mapStyles = {        
+//     height: "100vh",
+//     width: "100%"};
   
-  const defaultCenter = {
-    lat: 41.3851, lng: 2.1734
-  }
+//   const defaultCenter = {
+//     lat: 41.3851, lng: 2.1734
+//   }
   
-  return (
-     <LoadScript
-       googleMapsApiKey='AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg'>
-        <GoogleMap
-          mapContainerStyle={mapStyles}
-          zoom={13}
-          center={defaultCenter}
-        />
-     </LoadScript>
-  )
-}
-export default MapContainer;
+//   return (
+//      <LoadScript
+//        googleMapsApiKey='AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg'>
+//         <GoogleMap
+//           mapContainerStyle={mapStyles}
+//           zoom={13}
+//           center={defaultCenter}
+//         />
+//      </LoadScript>
+//   )
+// }
+// export default MapContainer;
+
 

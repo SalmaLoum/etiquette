@@ -17,6 +17,7 @@ const AppointmentForm = ({ salonId }) => {
 
   const [addAppointment] = useMutation(ADD_APPOINTMENT)
 
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     if (!datetime) {
