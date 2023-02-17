@@ -27,21 +27,20 @@ export const QUERY_SALONS = gql`
 `;
 
 export const QUERY_SINGLE_SALON = gql`
-  query Query($salonId: ID!) {
-    salon(salonId: $salonId) {
+query Query($salonId: ID!) {
+  salon(salonId: $salonId) {
+    _id
+    salonAddress
+    salonName
+    salonImage
+    salonHours
+    appointments {
       _id
       datetime
       appointmentService
-      service {
-        _id
-        datetime
-        service {
-          _id
-          serviceType
-        }
-      }
     }
   }
+}
 `;
 
 

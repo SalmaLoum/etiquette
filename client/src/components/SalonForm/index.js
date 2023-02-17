@@ -16,7 +16,7 @@ const SalonForm = ({ salonId }) => {
   const [userAlert, setUserAlert] = useState(false)
   const [alertMessage, setAlertMessage] = useState('')
 
-  const [addSalon, { error: addSalonError }] = useMutation(ADD_SALON)
+  const [addSalon] = useMutation(ADD_SALON)
   const handleChange = (event) => {
     const { name, value } = event.target
 
@@ -47,7 +47,6 @@ const SalonForm = ({ salonId }) => {
     try {
       await addSalon({
         variables: {
-          salonId,
           salonName,
           salonAddress,
           salonHours,
@@ -59,7 +58,7 @@ const SalonForm = ({ salonId }) => {
       setSalonName('');
       setSalonAddress('');
       setSalonHours('');
-    } catch (err) {}
+    } catch (err) { }
   };
 
   // cloudinary
