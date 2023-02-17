@@ -12,12 +12,14 @@ const AppointmentForm = ({ salonId }) => {
 
   const [appointmentService, setAppointmentService] = useState('')
 
+  const [addAppointment] = useMutation(ADD_APPOINTMENT)
+
   const [error, setError] = useState('')
   console.log(error)
 
-  const [addAppointment, { error: addSalonError }] = useMutation(
-    ADD_APPOINTMENT,
-  )
+
+  const [userAlert, setUserAlert] = useState(false)
+  const [alertMessage, setAlertMessage] = useState('')
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -33,7 +35,7 @@ const AppointmentForm = ({ salonId }) => {
       return
     }
 
-    if (!service) {
+    if (!appointmentService) {
       setAlertMessage(
         'You need to add a service type to register an appointment',
       )
@@ -52,10 +54,8 @@ const AppointmentForm = ({ salonId }) => {
 
       setdatetime('')
       setAppointmentService('')
-
-      setError('')
     } catch (err) {
-      setError(err.message)
+
     }
   }
 
@@ -92,7 +92,7 @@ const AppointmentForm = ({ salonId }) => {
                 Add Appointment
               </button>
               {userAlert && (
-                <div className="my-3 p-3 bg-danger text-white block">
+                <div className="my-3 p-3 bg-danger text-white block error">
                   {alertMessage}
                 </div>
               )}
