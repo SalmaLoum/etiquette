@@ -13,6 +13,7 @@ const AppointmentForm = ({ salonId }) => {
   const [appointmentService, setAppointmentService] = useState('')
 
   const [error, setError] = useState('')
+  console.log(error)
 
   const [addAppointment, { error: addSalonError }] = useMutation(
     ADD_APPOINTMENT,
