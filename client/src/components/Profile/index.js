@@ -19,10 +19,12 @@ const Profile = () => {
             {' '}
             {user.username}'s profile
           </h4>
+          <br />
+          <p>
+            <strong> Your email is:</strong> {user.email}
+          </p>
 
-          <div>
-
-          </div>
+          <div></div>
         </div>
       </div>
     </div>

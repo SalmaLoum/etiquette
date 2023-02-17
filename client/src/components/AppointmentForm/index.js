@@ -87,7 +87,6 @@ const AppointmentForm = ({ salonId }) => {
               ></textarea>
 
 
-
               <button className="btn btn-dark btn-lg py-3" type="submit">
 
                 Add Appointment
