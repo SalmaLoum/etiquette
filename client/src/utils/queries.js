@@ -6,7 +6,11 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      password
+      thoughts {
+        _id
+        thoughtText
+        createdAt
+      }
     }
   }
 `;
@@ -39,6 +43,7 @@ export const QUERY_SINGLE_SALON = gql`
     }
   }
 `;
+
 
 export const QUERY_ME = gql`
   query me {

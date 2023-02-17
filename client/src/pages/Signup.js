@@ -160,7 +160,7 @@ const Signup = () => {
             )}
 
             {userAlert && (
-              <div className="my-3 p-3 bg-danger text-white error block">
+              <div className="my-3 p-3 bg-danger text-white">
                 {alertMessage}
               </div>
             )}

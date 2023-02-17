@@ -14,9 +14,9 @@ import Login from './pages/Login'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import SingleSalon from './pages/SingleSalon'
-import Profile from './components/Profile'
 // import SalonList from './components/SalonList'
 // import SalonForm from './components/SalonForm'
+
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -53,8 +53,10 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
-              <Route path="/salons/:salonId" element={<SingleSalon />} />
-              <Route path="/me" element={<Profile />} />
+              <Route
+                path="/salons/:salonId"
+                element={<SingleSalon />}
+              />
             </Routes>
           </div>
           <Footer />

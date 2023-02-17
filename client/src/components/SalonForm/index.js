@@ -7,6 +7,7 @@ import { ADD_SALON } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
 const SalonForm = ({ salonId }) => {
+
   const [salonName, setSalonName] = useState('');
   const [salonAddress, setSalonAddress] = useState('');
 
@@ -125,7 +126,9 @@ const SalonForm = ({ salonId }) => {
             ></textarea>
 
             {userAlert && (
-              <div className='my-3 p-3 bg-danger text-white block'>
+
+              <div className="my-3 p-3 bg-danger text-white block">
+
                 {alertMessage}
               </div>
             )}
