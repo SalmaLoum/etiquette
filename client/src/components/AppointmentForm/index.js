@@ -9,6 +9,8 @@ import Auth from '../../utils/auth'
 
 const AppointmentForm = ({ salonId }) => {
   const [datetime, setdatetime] = useState('')
+  const [alertMessage, setAlertMessage] = useState('')
+  const [userAlert, setUserAlert] = useState('')
 
   const [appointmentService, setAppointmentService] = useState('')
 
@@ -33,7 +35,7 @@ const AppointmentForm = ({ salonId }) => {
       return
     }
 
-    if (!service) {
+    if (!appointmentService) {
       setAlertMessage(
         'You need to add a service type to register an appointment',
       )
