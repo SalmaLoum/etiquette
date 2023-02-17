@@ -10,7 +10,7 @@ import Auth from '../../utils/auth'
 const AppointmentForm = ({ salonId }) => {
   const [datetime, setdatetime] = useState('')
   const [service, setService] = useState('')
- 
+
   const [error, setError] = useState('')
 
   const [addAppointment, { error: addSalonError }] = useMutation(ADD_APPOINTMENT)
@@ -29,13 +29,13 @@ const AppointmentForm = ({ salonId }) => {
           salonId,
           datetime,
           service,
-        
+
         },
       })
 
       setdatetime('')
       setService('')
- 
+
       setError('')
     } catch (err) {
       setError(err.message)
@@ -44,7 +44,7 @@ const AppointmentForm = ({ salonId }) => {
 
   return (
     <div>
-      <h3> Book your appointment</h3>
+      <h3> Book your appointment now</h3>
 
       {Auth.loggedIn() ? (
         <>
@@ -71,7 +71,7 @@ const AppointmentForm = ({ salonId }) => {
                 onChange={(event) => setService(event.target.value)}
               ></textarea>
 
-              
+
               <button className="btn btn-dark btn-lg py-3" type="submit">
                 Add Appointment
               </button>
