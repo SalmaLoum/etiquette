@@ -17,7 +17,6 @@ import SingleSalon from './pages/SingleSalon'
 // import SalonList from './components/SalonList'
 // import SalonForm from './components/SalonForm'
 
-
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -53,10 +52,8 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
-              <Route
-                path="/salons/:salonId"
-                element={<SingleSalon />}
-              />
+              <Route path="/salons/:salonId" element={<SingleSalon />} />
+              <Route path="/me" element={<Profile />} />
             </Routes>
           </div>
           <Footer />
