@@ -25,7 +25,7 @@ Whether you're looking to make a quick nail salon appointment, or to get inspire
 
 ## Installation
 
-Go to [app page](https://immense-ridge-33507.herokuapp.com/) and follow the prompts.
+Go to [app page](https://etiquette.herokuapp.com/) and follow the prompts.
 
 ## Usage
 
